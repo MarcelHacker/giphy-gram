@@ -10,8 +10,7 @@ export class GifsComponent implements OnInit {
   title = 'Liste von Gifs';
   gifs;
 
-  constructor() {
-    let service = new GifsService();
+  constructor(service: GifsService) {
     this.gifs = service.getGifs();
   }
 
