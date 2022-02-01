@@ -45,14 +45,25 @@
 <div class="container-fluid">
   <div class="card-group">
     <div *ngFor="let gif of gifs">
-      <iframe
-        src="https://giphy.com/embed/EwjNfsH3RuRg1SZw4d"
-        width="480"
-        height="270"
-        frameBorder="0"
-        class="giphy-embed"
-        allowFullScreen
-      ></iframe>
+      <div class="card">
+        <iframe
+          src="https://giphy.com/embed/EwjNfsH3RuRg1SZw4d"
+          width="480"
+          height="270"
+          frameBorder="0"
+          class="giphy-embed"
+          allowFullScreen
+        ></iframe>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted"
+          ><div class="mx-auto">
+            <button type="button" class="btn btn-success btn-sm">
+              Favoriten
+            </button>
+          </div></small
+        >
+      </div>
     </div>
   </div>
 </div>
