@@ -1,14 +1,31 @@
 <div class="container-lg">
   <h1>Angular</h1>
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img
+          src="../../assets/logos/logo.png"
+          alt="Web&Soehne"
+          width="150"
+          height="55"
+          class="d-inline-block align-text-top"
+        />
+        Gifhy Gifs
+      </a>
+    </div>
+  </nav>
   <div>
     <p>{{ title }}</p>
     <ul>
       <li *ngFor="let gif of gifs">{{ gif }}</li>
     </ul>
     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-      <button type="button" class="btn btn-danger">Left</button>
-      <button type="button" class="btn btn-warning">Middle</button>
-      <button type="button" class="btn btn-success">Right</button>
+      <button type="button" class="btn btn-danger">Reload</button>
     </div>
+  </div>
+  <div class="row">
+    <div class="col">Column</div>
+    <div class="col">Column</div>
+    <div class="col">Column</div>
   </div>
 </div>
