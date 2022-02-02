@@ -23,9 +23,21 @@ export class GifsComponent implements OnInit {
 
   showData() {
     return [
-      { embed_url: 'https://giphy.com/embed/Ya2z1WUnZFK5ijJAkB', width: '500' },
-      { embed_url: 'https://giphy.com/embed/TBOvwBGkQShnq', width: '600' },
-      { embed_url: 'https://giphy.com/embed/uypubDRjnv0icWp2hV', width: '500' },
+      {
+        embed_url: 'https://giphy.com/embed/Ya2z1WUnZFK5ijJAkB',
+        width: '500',
+        height: '280',
+      },
+      {
+        embed_url: 'https://giphy.com/embed/TBOvwBGkQShnq',
+        width: '600',
+        height: '250',
+      },
+      {
+        embed_url: 'https://giphy.com/embed/uypubDRjnv0icWp2hV',
+        width: '500',
+        height: '280',
+      },
     ];
   }
 
