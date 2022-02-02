@@ -7,8 +7,8 @@ import { GifsService } from '../services/gifs.service';
   styleUrls: ['./gifs.component.css'],
 })
 export class GifsComponent implements OnInit {
-  title = 'Liste von Gifs';
-  gifs;
+  public title = 'Liste von Gifs';
+  public gifs;
 
   constructor(service: GifsService) {
     this.gifs = service.getGifs();
