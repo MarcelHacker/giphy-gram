@@ -44,10 +44,10 @@
 </nav>
 <div class="container-fluid">
   <div class="card-group">
-    <div>
+    <div *ngFor="let gif of showData()">
       <div class="card">
         <iframe
-          src="https://giphy.com/embed/Ya2z1WUnZFK5ijJAkB"
+          [src]="gif.embed_url"
           width="480"
           height="270"
           frameBorder="0"
@@ -59,7 +59,7 @@
         <small class="text-muted"
           ><div class="mx-auto">
             <button type="button" class="btn btn-success btn-sm">
-              Favoriten
+              Favoriten x{{ gif.embed_url }}
             </button>
           </div></small
         >
