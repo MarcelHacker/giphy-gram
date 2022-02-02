@@ -41,6 +41,7 @@ export class GifsComponent implements OnInit {
   }
 
   gifURL(url: string) {
+    // get rid of unsave url
     return this.sainitzer.bypassSecurityTrustResourceUrl(url);
   }
 }
