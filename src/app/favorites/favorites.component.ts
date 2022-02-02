@@ -15,19 +15,9 @@ export class FavoritesComponent implements OnInit {
   }
 
   getFavorites() {
-    let array = [];
+    let array = [''];
 
-    for (let i = 0; i < localStorage.length; i++) {
-      for (let variable in localStorage) {
-        // xy.push(JSON.parse(variable));
-        console.log('VARo: ' + variable);
-        if (i <= localStorage.length) {
-          console.log('Loggfed');
-          array.push(variable);
-        }
-      }
-      console.log('Array' + array);
-    }
+    console.table(array);
     return array;
   }
 
