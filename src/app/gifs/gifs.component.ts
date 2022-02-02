@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { GifsService } from '../services/gifs.service';
-import { Gif } from '../interface/gif';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
