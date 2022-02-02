@@ -1,3 +1,5 @@
+import { User } from './user';
+import { Images } from './image';
 export interface Gif {
   type: String;
   id: String;
