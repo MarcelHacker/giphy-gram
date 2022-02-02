@@ -1,7 +1,15 @@
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 export class GifsService {
-  getGifs() {
-    return ['gif1', 'gif2', 'gif3'];
+  public search = '';
+  public api_keay = '';
+  public limit = '';
+
+  constructor(private http: HttpClient) {}
+
+  getGifs(): Observable<Gifs[]> {
+    return this.http.get<Gifs[]>(
+      `http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=YOUR_API_KEY&limit=5`
+    );
   }
-  /*var xhr = $.get("http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=YOUR_API_KEY&limit=5");
-xhr.done(function(data) { console.log("success got data", data); });*/
 }
