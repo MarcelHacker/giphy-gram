@@ -9,16 +9,23 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class FavoritesComponent implements OnInit {
   constructor(private sainitzer: DomSanitizer) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.table(localStorage);
+  }
 
   getFavorites() {
-    let array = [];
+    let xy = [];
 
     for (let i = 0; i < localStorage.length; i++) {
-      array.push(JSON.parse(localStorage[i]));
+      let text;
+      text = localStorage[i];
+      text.replaceAt(0, '');
+      
+      let ha = JSON.parse(text);
+      xy.push(ha);
     }
-    console.log('Array of storage: ' + array);
-    return array;
+    console.table('Array: ' + xy);
+    return xy;
   }
 
   removeGif(id: number) {

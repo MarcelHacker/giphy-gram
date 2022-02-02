@@ -51,18 +51,6 @@ export class GifsComponent implements OnInit {
     localStorage.setItem('object' + id, json);
   }
 
- 
-
-  getFavorites() {
-    let array = [];
-
-    for (let i = 0; i < localStorage.length; i++) {
-      array.push(JSON.parse(localStorage[i]));
-    }
-    console.log('Array of storage: ' + array);
-    return array;
-  }
-
   gifURL(url: string) {
     // get rid of unsave url
     return this.sainitzer.bypassSecurityTrustResourceUrl(url);
