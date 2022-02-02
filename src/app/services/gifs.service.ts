@@ -16,7 +16,7 @@ export class GifsService {
   getGifs(): Observable<Gif[]> {
     console.log(this.url);
     var response = this.http.get<Gif[]>(this.url);
-    console.log(response);
+    console.log('Response:' + response);
     return response;
   }
 }
