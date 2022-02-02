@@ -1,3 +1,4 @@
+import { variable } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -14,18 +15,20 @@ export class FavoritesComponent implements OnInit {
   }
 
   getFavorites() {
-    let xy = [];
+    let array = [];
 
     for (let i = 0; i < localStorage.length; i++) {
-      let text;
-      text = localStorage[i];
-      text.replaceAt(0, '');
-      
-      let ha = JSON.parse(text);
-      xy.push(ha);
+      for (let variable in localStorage) {
+        // xy.push(JSON.parse(variable));
+        console.log('VARo: ' + variable);
+        if (i <= localStorage.length) {
+          console.log('Loggfed');
+          array.push(variable);
+        }
+      }
+      console.log('Array' + array);
+      return array;
     }
-    console.table('Array: ' + xy);
-    return xy;
   }
 
   removeGif(id: number) {
