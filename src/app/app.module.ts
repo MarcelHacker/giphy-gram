@@ -6,10 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GifsComponent } from './gifs/gifs.component';
 import { GifsService } from './services/gifs.service';
-import { StoreModule } from '@ngrx/store'; // state management
+import { StoreModule } from '@ngrx/store';
+import { FavoritesComponent } from './favorites/favorites.component'; // state management
 
 @NgModule({
-  declarations: [AppComponent, GifsComponent],
+  declarations: [AppComponent, GifsComponent, FavoritesComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

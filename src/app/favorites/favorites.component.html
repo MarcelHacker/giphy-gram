@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <img
+        src="../../assets/logos/logo.png"
+        alt="Web&Soehne"
+        width="180"
+        height="55"
+        class="d-inline-block align-text-top"
+      />
+      <a class="navbar-brand" href="#"></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/favorites"
+              >Favoriten</a
+            >
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="card-group">
+      <div *ngFor="let gif of showData()">
+        <div class="card">
+          <iframe
+            [src]="gifURL(gif.embed_url)"
+            [width]="gif.width"
+            [height]="gif.height"
+            frameBorder="0"
+            class="giphy-embed"
+            allowFullScreen
+          ></iframe>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted"
+            ><div class="mx-auto">
+              <button type="button" class="btn btn-success btn-sm" (click)="saveGif(gif.id)">
+                Favoriten
+              </button>
+            </div></small
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  
