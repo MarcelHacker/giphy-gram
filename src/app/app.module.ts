@@ -6,10 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GifsComponent } from './gifs/gifs.component';
 import { GifsService } from './services/gifs.service';
+import { StoreModule } from '@ngrx/store'; // state management
 
 @NgModule({
   declarations: [AppComponent, GifsComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    StoreModule.forRoot({}, {}),
+  ],
   providers: [GifsService],
   bootstrap: [AppComponent],
 })
