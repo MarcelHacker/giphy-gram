@@ -23,21 +23,46 @@ export class GifsComponent implements OnInit {
   showData() {
     return [
       {
+        id: 1,
         embed_url: 'https://giphy.com/embed/Ya2z1WUnZFK5ijJAkB',
         width: '500',
         height: '280',
       },
       {
+        id: 2,
         embed_url: 'https://giphy.com/embed/TBOvwBGkQShnq',
         width: '600',
         height: '250',
       },
       {
+        id: 3,
         embed_url: 'https://giphy.com/embed/uypubDRjnv0icWp2hV',
         width: '500',
         height: '280',
       },
     ];
+  }
+
+  saveGif(id: number) {
+    var object;
+    object = this.showData().find((element) => element.id == id);
+    var json = JSON.stringify(object);
+    console.log('Saved:' + json);
+    localStorage.setItem('object' + id, json);
+  }
+
+  removeGif(id: number) {
+    localStorage.removeItem('object' + id);
+  }
+
+  getFavorites() {
+    let array = [];
+
+    for (let i = 0; i < localStorage.length; i++) {
+      array.push(JSON.parse(localStorage[i]));
+    }
+    console.log('Array of storage: ' + array);
+    return array;
   }
 
   gifURL(url: string) {
