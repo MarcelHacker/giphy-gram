@@ -27,8 +27,8 @@ export class FavoritesComponent implements OnInit {
         }
       }
       console.log('Array' + array);
-      return array;
     }
+    return array;
   }
 
   removeGif(id: number) {
