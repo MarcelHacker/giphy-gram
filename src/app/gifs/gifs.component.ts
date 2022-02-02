@@ -12,6 +12,7 @@ export class GifsComponent implements OnInit {
   ngOnInit(): void {
     this.service.getGifs().subscribe((result) => {
       console.log('Result:' + result);
+      console.table(result);
     });
   }
 }
