@@ -9,15 +9,14 @@ export class GifsService {
   public search = '';
   public api_key = 'vf7nDm11F3X2Pe63jlGjWWPiFCFCZXM8';
   public limit = '5';
+  public url = `http://api.giphy.com/v1/gifs/search?q=arnold&api_key=${this.api_key}&limit=${this.limit}`;
 
   constructor(private http: HttpClient) {}
 
   getGifs(): Observable<Gif[]> {
-    console.log(
-      `http://api.giphy.com/v1/gifs/search?q=arnold&api_key=${this.api_key}&limit=${this.limit}`
-    );
-    return this.http.get<Gif[]>('http://api.giphy.com/v1/gifs/search', {
-      api_key: 'this.api_key',
-    });
+    console.log(this.url);
+    var response = this.http.get<Gif[]>(this.url);
+    console.log(response);
+    return response;
   }
 }

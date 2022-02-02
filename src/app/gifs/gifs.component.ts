@@ -7,14 +7,11 @@ import { GifsService } from '../services/gifs.service';
   styleUrls: ['./gifs.component.css'],
 })
 export class GifsComponent implements OnInit {
-  public title = 'Liste von Gifs';
-  public gifs;
-
-  constructor(service: GifsService) {
-    this.gifs = service.getGifs();
-  }
+  constructor(private service: GifsService) {}
 
   ngOnInit(): void {
-    console.log(this.gifs);
+    this.service.getGifs().subscribe((result) => {
+      console.log('Result:' + result);
+    });
   }
 }
