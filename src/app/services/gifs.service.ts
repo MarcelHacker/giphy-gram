@@ -1,7 +1,10 @@
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Gif } from '../interface/gif';
+
+@Injectable()
 export class GifsService {
   public search = '';
   public api_key = 'vf5nDm11F3X2Pe63jlGjWWPiFCFCZXM8';
