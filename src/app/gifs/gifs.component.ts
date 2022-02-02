@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GifsService } from '../services/gifs.service';
 import { Gif } from '../interface/gif';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-gifs',
@@ -10,7 +11,7 @@ import { Gif } from '../interface/gif';
 export class GifsComponent implements OnInit {
   public gifs = {};
 
-  constructor(private service: GifsService) {}
+  constructor(private service: GifsService, private sainitzer: DomSanitizer) {}
 
   ngOnInit(): void {
     this.service.getGifs().subscribe((result: Object) => {
@@ -28,5 +29,9 @@ export class GifsComponent implements OnInit {
       { embed_url: 'https://giphy.com/embed/TBOvwBGkQShnq' },
       { embed_url: 'https://giphy.com/embed/uypubDRjnv0icWp2hV' },
     ];
+  }
+
+  gifURL(url: string) {
+    return this.sainitzer.bypassSecurityTrustResourceUrl(url);
   }
 }

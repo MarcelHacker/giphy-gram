@@ -47,7 +47,7 @@
     <div *ngFor="let gif of showData()">
       <div class="card">
         <iframe
-          [src]="gif.embed_url"
+          [src]="gifURL(gif.embed_url)"
           width="480"
           height="270"
           frameBorder="0"
@@ -59,7 +59,7 @@
         <small class="text-muted"
           ><div class="mx-auto">
             <button type="button" class="btn btn-success btn-sm">
-              Favoriten x{{ gif.embed_url }}
+              Favoriten
             </button>
           </div></small
         >
