@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { GifsComponent } from './gifs/gifs.component';
 import { GifsService } from './services/gifs.service';
 import { StoreModule } from '@ngrx/store';
-import { FavoritesComponent } from './favorites/favorites.component'; // state management
+import { FavoritesComponent } from './favorites/favorites.component';
 
 @NgModule({
   declarations: [AppComponent, GifsComponent, FavoritesComponent],

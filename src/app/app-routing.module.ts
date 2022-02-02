@@ -5,7 +5,8 @@ import { GifsComponent } from './gifs/gifs.component';
 
 const routes: Routes = [
   { path: '', component: GifsComponent },
-  { path: '/favorites', component: FavoritesComponent },
+  { path: 'favorites', component: FavoritesComponent },
+  { path: '**', component: GifsComponent }, // handle other sides
 ];
 
 @NgModule({
