@@ -51,9 +51,7 @@ export class GifsComponent implements OnInit {
     localStorage.setItem('object' + id, json);
   }
 
-  removeGif(id: number) {
-    localStorage.removeItem('object' + id);
-  }
+ 
 
   getFavorites() {
     let array = [];
