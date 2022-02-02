@@ -14,10 +14,10 @@ export class GifsService {
 
   getGifs(): Observable<Gif[]> {
     console.log(
-      `http://api.giphy.com/v1/gifs/search?q=&api_key=${this.api_key}&limit=${this.limit}`
+      `http://api.giphy.com/v1/gifs/search?q=arnold&api_key=${this.api_key}&limit=${this.limit}`
     );
-    return this.http.get<Gif[]>(
-      `http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=${this.api_key}&limit=${this.limit}`
-    );
+    return this.http.get<Gif[]>('http://api.giphy.com/v1/gifs/search', {
+      api_key: 'this.api_key',
+    });
   }
 }
