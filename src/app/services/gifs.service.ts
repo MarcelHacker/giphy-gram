@@ -7,7 +7,7 @@ import { Gif } from '../interface/gif';
 @Injectable()
 export class GifsService {
   public search = '';
-  public api_key = 'vf7nDm11F3X2Pe63jlGjWWPiFCFCZXM8';
+  public api_key = 'VnF5KY4LRWTrdCIlHNdNXWjMKN9BSPxL';
   public limit = '5';
   public url = `http://api.giphy.com/v1/gifs/search?q=arnold&api_key=${this.api_key}&limit=${this.limit}`;
 
