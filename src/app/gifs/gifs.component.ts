@@ -14,5 +14,7 @@ export class GifsComponent implements OnInit {
     this.gifs = service.getGifs();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.gifs);
+  }
 }
