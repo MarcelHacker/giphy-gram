@@ -47,9 +47,9 @@
     <div *ngFor="let gif of getFavorites()">
       <div class="card">
         <iframe
-          [src]=""
-          [width]=""
-          [height]=""
+          [src]="gifURL(gif.embed_url)"
+          [width]="gif.width"
+          [height]="gif.height"
           frameBorder="0"
           class="giphy-embed"
           allowFullScreen
@@ -58,7 +58,13 @@
       <div class="card-footer">
         <small class="text-muted"
           ><div class="mx-auto">
-            <button type="button" class="btn btn-danger btn-sm">Remove</button>
+            <button
+              type="button"
+              class="btn btn-danger btn-sm"
+              (click)="removeGif(gif.id)"
+            >
+              Remove
+            </button>
           </div></small
         >
       </div>

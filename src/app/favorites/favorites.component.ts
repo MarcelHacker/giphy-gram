@@ -15,14 +15,28 @@ export class FavoritesComponent implements OnInit {
   }
 
   getFavorites() {
-    let array = [''];
+    let array = [];
+    var text;
 
-    console.table(array);
+    if (localStorage.length != 0) {
+      text = localStorage.getItem('savedGifs');
+      console.log('Text: ' + text);
+      array.push(JSON.parse(text as any));
+
+      console.table('Array' + array);
+    }
+
     return array;
+    //'{"id":1,"embed_url":"https://giphy.com/embed/Ya2z1WUnZFK5ijJAkB","width":"500","height":"280"}null'
   }
 
   removeGif(id: number) {
     localStorage.removeItem('object' + id);
+  }
+
+  clearLocalStorage() {
+    localStorage.clear();
+    console.error('Storage cleared!');
   }
 
   gifURL(url: string) {

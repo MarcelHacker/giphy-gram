@@ -44,11 +44,16 @@ export class GifsComponent implements OnInit {
   }
 
   saveGif(id: number) {
-    var object;
+    var object, buffer;
     object = this.showData().find((element) => element.id == id);
     var json = JSON.stringify(object);
+    buffer = localStorage.getItem('savedGifs');
+
+    if (buffer != null) {
+      json = json + ',' + buffer;
+    }
     console.log('Saved:' + json);
-    localStorage.setItem('object' + id, json);
+    localStorage.setItem('savedGifs', json);
   }
 
   gifURL(url: string) {
