@@ -30,13 +30,11 @@ export class GifsComponent implements OnInit {
   }
 
   checkLocalSearch() {
-    console.log('Search: ' + this.service.getSearchTerm());
     if (this.service.getSearchTerm() == '') {
       this.service.setSearchTerm('Arnold Schwarzenegger');
       console.log('Search set to Arni');
     } else {
       this.service.setSearchTerm(this.search);
-      console.log('Search set to' + this.search);
     }
   }
 
@@ -46,7 +44,6 @@ export class GifsComponent implements OnInit {
       console.table(result);
       this.gifs = result;
     });
-    console.log('Suchfeld: ' + this.search);
   }
 
   showData() {

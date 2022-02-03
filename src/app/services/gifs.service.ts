@@ -28,6 +28,7 @@ export class GifsService {
 
   setSearchTerm(search: string) {
     localStorage.setItem('search', search);
+    console.log('Setted: ' + localStorage.getItem('search'));
   }
 
   getSearchTerm() {
