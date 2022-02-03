@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Store } from '@ngrx/store';
-import { removeGif } from '../store/storage.actions';
+import { GifsService } from '../services/gifs.service';
 
 @Component({
   selector: 'app-favorites',
@@ -10,9 +9,10 @@ import { removeGif } from '../store/storage.actions';
 })
 export class FavoritesComponent implements OnInit {
   public contentLoaded = false;
-  constructor(private sainitzer: DomSanitizer, private store: Store) {}
+  constructor(private sainitzer: DomSanitizer, private service: GifsService) {}
 
   ngOnInit(): void {
+    this.service.setLoading(false);
     console.table(localStorage);
   }
 
@@ -39,8 +39,6 @@ export class FavoritesComponent implements OnInit {
   }
 
   dropGif(id: number) {
-    this.store.dispatch(removeGif());
-
     var ar, json;
     let array = [];
     let buffer = [];

@@ -10,7 +10,7 @@ export class GifsService {
   public api_key = 'VnF5KY4LRWTrdCIlHNdNXWjMKN9BSPxL'; // created own key, because old doesn't work
   public limit = '30';
   public url = '';
-  public loading = true;
+  public loading = false;
 
   constructor(private http: HttpClient) {}
 
@@ -35,6 +35,7 @@ export class GifsService {
 
   setLoading(statement: boolean) {
     this.loading = statement;
+    console.log(this.loading);
   }
 
   //Getters

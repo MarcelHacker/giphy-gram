@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GifsService } from '../services/gifs.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Observable, UnsubscriptionError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { saveGif } from '../store/storage.actions';
 
 @Component({
   selector: 'app-gifs',
@@ -11,23 +10,20 @@ import { saveGif } from '../store/storage.actions';
   styleUrls: ['./gifs.component.css'],
 })
 export class GifsComponent implements OnInit {
-  gif$: Observable<string>;
   public gifs = {};
   public term = '';
   public contentLoaded = false;
 
-  constructor(
-    private service: GifsService,
-    private sainitzer: DomSanitizer,
-    private store: Store<{ gif: string }>
-  ) {
-    this.gif$ = store.select('gif');
-  }
+  constructor(private service: GifsService, private sainitzer: DomSanitizer) {}
 
   ngOnInit(): void {
+    this.service.setLoading(false);
+    this.contentLoaded = this.service.getLoading();
     this.checkLocalSearch();
     this.searchGifs();
     //this.AutoUnsub();
+    console.log('content: ' + this.contentLoaded);
+    this.service.setLoading(true);
   }
 
   checkLocalSearch() {
