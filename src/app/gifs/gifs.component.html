@@ -66,8 +66,8 @@
         <div class="card">
           <iframe
             [src]="gifURL(gif.embed_url)"
-            [width]="gif.width"
-            [height]="gif.height"
+            [width]="gif.images.original.width"
+            [height]="gif.images.original.height"
             frameBorder="0"
             class="giphy-embed"
             allowFullScreen
