@@ -27,5 +27,6 @@ import { gifReducer } from './store/storage.reducer';
   ],
   providers: [GifsService],
   bootstrap: [AppComponent],
+  //* to do delete store or integrate it
 })
 export class AppModule {}
