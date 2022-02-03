@@ -9,6 +9,7 @@ import { removeGif } from '../store/storage.actions';
   styleUrls: ['./favorites.component.css'],
 })
 export class FavoritesComponent implements OnInit {
+  public contentLoaded = false;
   constructor(private sainitzer: DomSanitizer, private store: Store) {}
 
   ngOnInit(): void {

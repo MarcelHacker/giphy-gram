@@ -43,29 +43,40 @@
   </div>
 </nav>
 <div class="container-fluid">
-  <div class="card-group">
-    <div *ngFor="let gif of getFavorites()">
-      <div class="card">
-        <iframe
-          [src]="gifURL(gif.embed_url)"
-          [width]="gif.width"
-          [height]="gif.height"
-          frameBorder="0"
-          class="giphy-embed"
-          allowFullScreen
-        ></iframe>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted"
-          ><div class="mx-auto d-grid gap-2 col-2">
-            <button
-              type="button"
-              class="btn btn-danger"
-              (click)="dropGif(gif.id)"
-            >
-              <i class="bi bi-dash"></i>
-            </button></div
-        ></small>
+  <div *ngIf="!contentLoaded">
+    <div class="col-12">
+      <ngx-skeleton-loader
+        count="1"
+        appearance="line"
+        animation="progress-dark"
+      ></ngx-skeleton-loader>
+    </div>
+    <div *ngIf="contentLoaded">
+      <div class="card-group">
+        <div *ngFor="let gif of getFavorites()">
+          <div class="card">
+            <iframe
+              [src]="gifURL(gif.embed_url)"
+              [width]="gif.width"
+              [height]="gif.height"
+              frameBorder="0"
+              class="giphy-embed"
+              allowFullScreen
+            ></iframe>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted"
+              ><div class="mx-auto d-grid gap-2 col-2">
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  (click)="dropGif(gif.id)"
+                >
+                  <i class="bi bi-dash"></i>
+                </button></div
+            ></small>
+          </div>
+        </div>
       </div>
     </div>
   </div>
