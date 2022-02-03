@@ -60,6 +60,7 @@ export class FavoritesComponent implements OnInit {
   }
 
   clearLocalStorage() {
+    // development purposes
     localStorage.clear();
     console.error('Storage cleared!');
   }
