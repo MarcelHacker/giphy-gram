@@ -27,9 +27,6 @@ export class GifsComponent implements OnInit {
       console.log('Result:' + result);
       console.table(result);
       this.gifs = result;
-      console.log(Object.keys(this.gifs));
-      this.gifs = this.gifs as any;
-      console.log(this.gifs);
     });
   }
 
@@ -37,10 +34,14 @@ export class GifsComponent implements OnInit {
     return this.gifs as any;
   }
 
-  addGif(id: number) {
-    this.store.dispatch(saveGif());
+  addGif(id: string) {
+    console.log(id);
+    let gifArray = [];
+
+    gifArray = this.gifs as any;
+    // this.store.dispatch(saveGif());
     var object, buffer, payload, json;
-    object = this.showData().find((element: any) => element.id == id);
+    object = gifArray.data.find((element: any) => element.id == id);
     buffer = localStorage.getItem('savedGifs');
 
     if (buffer != null) {
