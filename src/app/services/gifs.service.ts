@@ -10,6 +10,7 @@ export class GifsService {
   public api_key = 'VnF5KY4LRWTrdCIlHNdNXWjMKN9BSPxL'; // created own key, because old doesn't work
   public limit = '30';
   public url = '';
+  public loading = true;
 
   constructor(private http: HttpClient) {}
 
@@ -25,16 +26,25 @@ export class GifsService {
     this.search = this.getSearchTerm() as any;
     this.url = `http://api.giphy.com/v1/gifs/search?q=${this.search}&api_key=${this.api_key}&limit=${this.limit}`;
   }
-
+  // Setters
   setSearchTerm(search: string) {
     localStorage.setItem('search', search);
     console.log('Setted: ' + localStorage.getItem('search'));
   }
 
+  setLoading(statement: boolean) {
+    this.loading = statement;
+  }
+  //Getters
   getSearchTerm() {
     return localStorage.getItem('search');
   }
 
+  getLoading() {
+    return this.loading;
+  }
+
+  // Development
   clearSearchTerm() {
     localStorage.removeItem('search');
   }
