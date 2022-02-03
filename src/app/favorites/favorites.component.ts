@@ -35,16 +35,28 @@ export class FavoritesComponent implements OnInit {
     } else {
       return null;
     }
-    //'{"id":1,"embed_url":"https://giphy.com/embed/Ya2z1WUnZFK5ijJAkB","width":"500","height":"280"}null'
   }
 
   dropGif(id: number) {
     this.store.dispatch(removeGif());
 
-    var ar;
-    ar = localStorage.getItem('savedGifs');
+    var ar, json;
+    let array = [];
+    let buffer = [];
 
-    localStorage.removeItem('object' + id);
+    ar = localStorage.getItem('savedGifs');
+    array = JSON.parse(ar as any);
+    console.log('Removing array: ' + array);
+
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].id != id) {
+        // exclude removing gif
+        buffer.push(array[i]);
+      }
+    }
+    array = buffer;
+    json = JSON.stringify(array);
+    localStorage.setItem('savedGifs', json);
   }
 
   clearLocalStorage() {
