@@ -14,7 +14,7 @@ import {
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.css'],
-  animations: [state],
+  animations: [],
 })
 export class FavoritesComponent implements OnInit {
   public contentLoaded = false;
