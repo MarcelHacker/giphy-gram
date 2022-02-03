@@ -35,7 +35,7 @@
           class="form-control me-2"
           type="search"
           placeholder="Search"
-          [value]="this.term"
+          [(ngModel)]="this.term"
           aria-label="Search"
         />
         <button
@@ -43,6 +43,7 @@
           type="submit"
           (click)="searchGifs()"
         >
+          {{ this.term }}
           Search
         </button>
       </form>

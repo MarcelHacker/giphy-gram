@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { GifsComponent } from './gifs/gifs.component';
 import { GifsService } from './services/gifs.service';
 import { FavoritesComponent } from './favorites/favorites.component';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { StoreModule } from '@ngrx/store';
 import { gifReducer } from './store/storage.reducer';
@@ -16,6 +18,8 @@ import { gifReducer } from './store/storage.reducer';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     StoreModule.forRoot({ gif: gifReducer }, {}),
   ],

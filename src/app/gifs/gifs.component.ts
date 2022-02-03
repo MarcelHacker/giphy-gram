@@ -30,7 +30,7 @@ export class GifsComponent implements OnInit {
   }
 
   checkLocalSearch() {
-    if (this.service.getSearchTerm() == '') {
+    if (this.term == '') {
       this.service.setSearchTerm('Arnold Schwarzenegger');
       console.log('Search set to Arni');
     } else {
