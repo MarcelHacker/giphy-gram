@@ -14,6 +14,7 @@ export class GifsComponent implements OnInit {
   gif$: Observable<string>;
   public gifs = {};
   public term = '';
+  public contentLoaded = false;
 
   constructor(
     private service: GifsService,

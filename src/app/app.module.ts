@@ -7,8 +7,9 @@ import { AppComponent } from './app.component';
 import { GifsComponent } from './gifs/gifs.component';
 import { GifsService } from './services/gifs.service';
 import { FavoritesComponent } from './favorites/favorites.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms'; // for two-way databinding
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 import { StoreModule } from '@ngrx/store';
 import { gifReducer } from './store/storage.reducer';
@@ -20,6 +21,7 @@ import { gifReducer } from './store/storage.reducer';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxSkeletonLoaderModule,
     HttpClientModule,
     StoreModule.forRoot({ gif: gifReducer }, {}),
   ],
