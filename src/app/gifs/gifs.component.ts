@@ -13,7 +13,7 @@ import { saveGif } from '../store/storage.actions';
 export class GifsComponent implements OnInit {
   gif$: Observable<string>;
   public gifs = {};
-  public search = '';
+  public term = '';
 
   constructor(
     private service: GifsService,
@@ -34,7 +34,8 @@ export class GifsComponent implements OnInit {
       this.service.setSearchTerm('Arnold Schwarzenegger');
       console.log('Search set to Arni');
     } else {
-      this.service.setSearchTerm(this.search);
+      console.log('Speicher gefunden: ' + this.service.getSearchTerm());
+      this.service.setSearchTerm(this.term);
     }
   }
 
