@@ -72,6 +72,23 @@ export class GifsComponent implements OnInit {
     localStorage.setItem('savedGifs', json);
   }
 
+  showFavoritesButton(id: number) {
+    // hide button when gif is already favorite
+    var array;
+    var text = localStorage.getItem('savedGifs');
+    if (text == null) {
+      return true;
+    } else {
+      array = JSON.parse(text as any);
+      for (let i = 0; i < array.length; i++) {
+        if (array[i].id == id) {
+          return false;
+        }
+      }
+      return true;
+    }
+  }
+
   gifURL(url: string) {
     // get rid of unsave url
     return this.sainitzer.bypassSecurityTrustResourceUrl(url);

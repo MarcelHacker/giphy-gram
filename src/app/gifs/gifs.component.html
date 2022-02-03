@@ -62,6 +62,7 @@
               type="button"
               class="btn btn-success btn-sm"
               (click)="addGif(gif.id)"
+              *ngIf="showFavoritesButton(gif.id)"
             >
               Favoriten
             </button>
