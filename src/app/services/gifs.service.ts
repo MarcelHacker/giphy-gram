@@ -8,15 +8,33 @@ import { Gif } from '../interface/gif';
 export class GifsService {
   public search = '';
   public api_key = 'VnF5KY4LRWTrdCIlHNdNXWjMKN9BSPxL'; // created own key, because old doesn't work
-  public limit = '5';
-  public url = `http://api.giphy.com/v1/gifs/search?q=arnold&api_key=${this.api_key}&limit=${this.limit}`;
+  public limit = '35';
+  public url = '';
 
   constructor(private http: HttpClient) {}
 
   getGifs(): Observable<Gif[]> {
-    console.log(this.url);
+    this.setURL();
+    console.log('Datenerfassung: ' + this.url);
     var response = this.http.get<Gif[]>(this.url);
     console.log('Response:' + response);
     return response;
+  }
+
+  setURL() {
+    this.search = this.getSearchTerm() as any;
+    this.url = `http://api.giphy.com/v1/gifs/search?q=${this.search}&api_key=${this.api_key}&limit=${this.limit}`;
+  }
+
+  setSearchTerm(search: string) {
+    localStorage.setItem('search', search);
+  }
+
+  getSearchTerm() {
+    return localStorage.getItem('search');
+  }
+
+  clearSearchTerm() {
+    localStorage.removeItem('search');
   }
 }

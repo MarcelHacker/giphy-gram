@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GifsService } from '../services/gifs.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Observable } from 'rxjs';
+import { Observable, UnsubscriptionError } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { saveGif } from '../store/storage.actions';
 
@@ -13,6 +13,7 @@ import { saveGif } from '../store/storage.actions';
 export class GifsComponent implements OnInit {
   gif$: Observable<string>;
   public gifs = {};
+  public search = '';
 
   constructor(
     private service: GifsService,
@@ -23,11 +24,29 @@ export class GifsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.checkLocalSearch();
+    this.searchGifs();
+    //this.AutoUnsub();
+  }
+
+  checkLocalSearch() {
+    console.log('Search: ' + this.service.getSearchTerm());
+    if (this.service.getSearchTerm() == '') {
+      this.service.setSearchTerm('Arnold Schwarzenegger');
+      console.log('Search set to Arni');
+    } else {
+      this.service.setSearchTerm(this.search);
+      console.log('Search set to' + this.search);
+    }
+  }
+
+  searchGifs() {
+    this.checkLocalSearch();
     this.service.getGifs().subscribe((result: Object) => {
-      console.log('Result:' + result);
       console.table(result);
       this.gifs = result;
     });
+    console.log('Suchfeld: ' + this.search);
   }
 
   showData() {
@@ -77,5 +96,20 @@ export class GifsComponent implements OnInit {
   gifURL(url: string) {
     // get rid of unsave url
     return this.sainitzer.bypassSecurityTrustResourceUrl(url);
+  }
+
+  AutoUnsub() {
+    return function (constructor: any) {
+      const orig = constructor.prototype.ngOnDestroy;
+      constructor.prototype.ngOnDestroy = function () {
+        for (const prop in this) {
+          const property = this[prop];
+          if (typeof property.subscribe === 'function') {
+            property.unsubscribe();
+          }
+        }
+        orig.apply();
+      };
+    };
   }
 }
