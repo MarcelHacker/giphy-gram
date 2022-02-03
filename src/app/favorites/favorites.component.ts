@@ -1,11 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { GifsService } from '../services/gifs.service';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  // ...
+} from '@angular/animations';
 
 @Component({
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.css'],
+  animations: [state],
 })
 export class FavoritesComponent implements OnInit {
   public contentLoaded = false;

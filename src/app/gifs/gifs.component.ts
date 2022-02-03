@@ -1,13 +1,44 @@
 import { Component, OnInit } from '@angular/core';
 import { GifsService } from '../services/gifs.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
+import {
+  trigger,
+  style,
+  animate,
+  transition,
+  state,
+  stagger,
+  query,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-gifs',
   templateUrl: './gifs.component.html',
   styleUrls: ['./gifs.component.css'],
+  animations: [
+    //* to do make this work
+    trigger('openClose', [
+      // ...
+      state(
+        'open',
+        style({
+          height: '200px',
+          opacity: 1,
+          backgroundColor: 'yellow',
+        })
+      ),
+      state(
+        'closed',
+        style({
+          height: '100px',
+          opacity: 0.8,
+          backgroundColor: 'blue',
+        })
+      ),
+      transition('* => closed', [animate('1s')]),
+      transition('* => open', [animate('0.5s')]),
+    ]),
+  ],
 })
 export class GifsComponent implements OnInit {
   public gifs = {};
