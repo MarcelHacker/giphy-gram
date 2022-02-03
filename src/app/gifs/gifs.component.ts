@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GifsService } from '../services/gifs.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { saveGif } from '../store/storage.actions';
 
 @Component({
   selector: 'app-gifs',
@@ -8,9 +11,16 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./gifs.component.css'],
 })
 export class GifsComponent implements OnInit {
+  gif$: Observable<string>;
   public gifs = {};
 
-  constructor(private service: GifsService, private sainitzer: DomSanitizer) {}
+  constructor(
+    private service: GifsService,
+    private sainitzer: DomSanitizer,
+    private store: Store<{ gif: string }>
+  ) {
+    this.gif$ = store.select('gif');
+  }
 
   ngOnInit(): void {
     this.service.getGifs().subscribe((result: Object) => {
@@ -43,14 +53,20 @@ export class GifsComponent implements OnInit {
     ];
   }
 
-  saveGif(id: number) {
-    var object, buffer;
+  addGif(id: number) {
+    this.store.dispatch(saveGif());
+    var object, buffer, payload, json;
     object = this.showData().find((element) => element.id == id);
-    var json = JSON.stringify(object);
     buffer = localStorage.getItem('savedGifs');
 
     if (buffer != null) {
-      json = json + ',' + buffer;
+      var array = JSON.parse(buffer);
+      console.log('buffer: ' + array);
+      array.push(object);
+      json = JSON.stringify(array);
+    } else {
+      payload = JSON.stringify(object);
+      json = '[' + payload + ']';
     }
     console.log('Saved:' + json);
     localStorage.setItem('savedGifs', json);

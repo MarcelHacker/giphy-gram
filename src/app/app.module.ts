@@ -6,8 +6,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GifsComponent } from './gifs/gifs.component';
 import { GifsService } from './services/gifs.service';
-import { StoreModule } from '@ngrx/store';
 import { FavoritesComponent } from './favorites/favorites.component';
+
+import { StoreModule } from '@ngrx/store';
+import { gifReducer } from './store/storage.reducer';
 
 @NgModule({
   declarations: [AppComponent, GifsComponent, FavoritesComponent],
@@ -15,7 +17,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({ gif: gifReducer }, {}),
   ],
   providers: [GifsService],
   bootstrap: [AppComponent],

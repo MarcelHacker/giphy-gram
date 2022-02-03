@@ -1,6 +1,7 @@
-import { variable } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Store } from '@ngrx/store';
+import { removeGif } from '../store/storage.actions';
 
 @Component({
   selector: 'app-favorites',
@@ -8,29 +9,41 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./favorites.component.css'],
 })
 export class FavoritesComponent implements OnInit {
-  constructor(private sainitzer: DomSanitizer) {}
+  constructor(private sainitzer: DomSanitizer, private store: Store) {}
 
   ngOnInit(): void {
     console.table(localStorage);
   }
 
   getFavorites() {
-    let array = [];
+    let array = {};
     var text;
+    //this.clearLocalStorage();
 
     if (localStorage.length != 0) {
       text = localStorage.getItem('savedGifs');
       console.log('Text: ' + text);
-      array.push(JSON.parse(text as any));
+      if (text != null) {
+        text.slice(1, 2);
+        text.slice(text.length);
+      }
 
-      console.table('Array' + array);
+      array = JSON.parse(text as any);
+
+      console.table('Array:' + array);
+      return array as any;
+    } else {
+      return null;
     }
-
-    return array;
     //'{"id":1,"embed_url":"https://giphy.com/embed/Ya2z1WUnZFK5ijJAkB","width":"500","height":"280"}null'
   }
 
-  removeGif(id: number) {
+  dropGif(id: number) {
+    this.store.dispatch(removeGif());
+
+    var ar;
+    ar = localStorage.getItem('savedGifs');
+
     localStorage.removeItem('object' + id);
   }
 
