@@ -26,37 +26,21 @@ export class GifsComponent implements OnInit {
     this.service.getGifs().subscribe((result: Object) => {
       console.log('Result:' + result);
       console.table(result);
-      result = this.gifs;
+      this.gifs = result;
+      console.log(Object.keys(this.gifs));
+      this.gifs = this.gifs as any;
+      console.log(this.gifs);
     });
   }
 
   showData() {
-    return [
-      {
-        id: 1,
-        embed_url: 'https://giphy.com/embed/Ya2z1WUnZFK5ijJAkB',
-        width: '500',
-        height: '280',
-      },
-      {
-        id: 2,
-        embed_url: 'https://giphy.com/embed/TBOvwBGkQShnq',
-        width: '600',
-        height: '250',
-      },
-      {
-        id: 3,
-        embed_url: 'https://giphy.com/embed/uypubDRjnv0icWp2hV',
-        width: '500',
-        height: '280',
-      },
-    ];
+    return this.gifs as any;
   }
 
   addGif(id: number) {
     this.store.dispatch(saveGif());
     var object, buffer, payload, json;
-    object = this.showData().find((element) => element.id == id);
+    object = this.showData().find((element: any) => element.id == id);
     buffer = localStorage.getItem('savedGifs');
 
     if (buffer != null) {

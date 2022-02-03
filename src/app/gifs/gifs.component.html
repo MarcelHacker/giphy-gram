@@ -44,7 +44,7 @@
 </nav>
 <div class="container-fluid">
   <div class="card-group">
-    <div *ngFor="let gif of showData()">
+    <div *ngFor="let gif of showData().data">
       <div class="card">
         <iframe
           [src]="gifURL(gif.embed_url)"
