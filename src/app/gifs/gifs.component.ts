@@ -41,7 +41,7 @@ import {
     trigger('fadeIn', [
       transition(':enter', [
         style({ opacity: 0 }),
-        animate('2500ms', style({ opacity: 1 })),
+        animate('1500ms', style({ opacity: 1 })),
       ]),
     ]),
   ],

@@ -4,6 +4,9 @@ import { GifsService } from '../services/gifs.service';
 import {
   trigger,
   state,
+  query,
+  group,
+  stagger,
   style,
   animate,
   transition,
@@ -14,7 +17,14 @@ import {
   selector: 'app-favorites',
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.css'],
-  animations: [],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('500ms', style({ opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
 export class FavoritesComponent implements OnInit {
   public contentLoaded = false;
