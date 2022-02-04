@@ -63,8 +63,8 @@
             ></ngx-skeleton-loader>
           </div>
         </div>
-        <div *ngIf="!this.loading">
-          <div class="card" @fadeIn>
+        <div *ngIf="!this.loading" @fadeIn>
+          <div class="card">
             <iframe
               [src]="gifURL(gif.embed_url)"
               [width]="gif.images.original.width"
