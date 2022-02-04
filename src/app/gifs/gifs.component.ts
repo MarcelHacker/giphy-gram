@@ -38,22 +38,30 @@ import {
       transition('* => closed', [animate('1s')]),
       transition('* => open', [animate('0.5s')]),
     ]),
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('2500ms', style({ opacity: 1 })),
+      ]),
+    ]),
   ],
 })
 export class GifsComponent implements OnInit {
   public gifs = {};
   public term = '';
-  public contentLoaded = false;
+  public loading = true;
 
   constructor(private service: GifsService, private sainitzer: DomSanitizer) {}
 
   ngOnInit(): void {
+    setInterval(() => {
+      this.loading = false;
+    }, 3000);
     this.service.setLoading(false);
-    this.contentLoaded = this.service.getLoading();
     this.checkLocalSearch();
     this.searchGifs();
     //this.AutoUnsub();
-    console.log('content: ' + this.contentLoaded);
+    console.log('content: ' + this.service.getLoading());
     this.service.setLoading(true);
   }
 
@@ -77,6 +85,10 @@ export class GifsComponent implements OnInit {
 
   showData() {
     return this.gifs as any;
+  }
+
+  getContentLoading() {
+    return this.service.getLoading();
   }
 
   addGif(id: string) {

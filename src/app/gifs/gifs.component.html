@@ -51,40 +51,42 @@
   </div>
 </nav>
 <div class="container-fluid">
-  <div *ngIf="!contentLoaded">
-    <div class="col-12">
-      <ngx-skeleton-loader
-        count="1"
-        appearance="line"
-        animation="progress-dark"
-      ></ngx-skeleton-loader>
-    </div>
-  </div>
   <div>
     <div class="card-group" [@openClose]="showData()">
       <div *ngFor="let gif of showData().data">
-        <div class="card">
-          <iframe
-            [src]="gifURL(gif.embed_url)"
-            [width]="gif.images.original.width"
-            [height]="gif.images.original.height"
-            frameBorder="0"
-            class="giphy-embed"
-            allowFullScreen
-          ></iframe>
+        <div *ngIf="this.loading">
+          <div class="card mx-lg-auto">
+            <ngx-skeleton-loader
+              count="1"
+              appearance="line"
+              animation="progress-dark"
+            ></ngx-skeleton-loader>
+          </div>
         </div>
-        <div class="card-footer">
-          <small class="text-muted"
-            ><div class="mx-auto d-grid gap-2 col-2">
-              <button
-                type="button"
-                class="btn btn-success"
-                (click)="addGif(gif.id)"
-                *ngIf="showFavoritesButton(gif.id)"
-              >
-                <i class="bi bi-plus"></i>
-              </button></div
-          ></small>
+        <div *ngIf="!this.loading">
+          <div @openClose class="card">
+            <iframe
+              [src]="gifURL(gif.embed_url)"
+              [width]="gif.images.original.width"
+              [height]="gif.images.original.height"
+              frameBorder="0"
+              class="giphy-embed"
+              allowFullScreen
+            ></iframe>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted"
+              ><div class="mx-auto d-grid gap-2 col-2">
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  (click)="addGif(gif.id)"
+                  *ngIf="showFavoritesButton(gif.id)"
+                >
+                  <i class="bi bi-plus"></i>
+                </button></div
+            ></small>
+          </div>
         </div>
       </div>
     </div>
