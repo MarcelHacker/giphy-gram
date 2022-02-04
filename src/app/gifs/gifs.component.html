@@ -52,7 +52,7 @@
 </nav>
 <div class="container-fluid">
   <div>
-    <div class="card-group" [@openClose]="showData()">
+    <div class="card-group">
       <div *ngFor="let gif of showData().data">
         <div *ngIf="this.loading">
           <div class="card mx-lg-auto">
@@ -64,7 +64,7 @@
           </div>
         </div>
         <div *ngIf="!this.loading">
-          <div @openClose class="card">
+          <div class="card" @fadeIn>
             <iframe
               [src]="gifURL(gif.embed_url)"
               [width]="gif.images.original.width"
