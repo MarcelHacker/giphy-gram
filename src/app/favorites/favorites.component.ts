@@ -17,12 +17,17 @@ import {
   animations: [],
 })
 export class FavoritesComponent implements OnInit {
-  public contentLoaded = true;
+  public contentLoaded = false;
 
   constructor(private sainitzer: DomSanitizer, private service: GifsService) {}
 
   ngOnInit(): void {
-    console.log('%c Hi', 'background: red');
+    console.log('%c Favorites component initialized', 'background: green');
+    setInterval(() => {
+      if (this.contentLoaded == false) {
+        this.contentLoaded = true;
+      }
+    }, 2000);
   }
 
   getFavorites() {
@@ -67,7 +72,7 @@ export class FavoritesComponent implements OnInit {
   clearLocalStorage() {
     // development purposes
     localStorage.clear();
-    console.error('Storage cleared!');
+    console.log('%c Local storage cleared!', 'background: red');
   }
 
   gifURL(url: string) {

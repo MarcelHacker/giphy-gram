@@ -54,6 +54,7 @@ export class GifsComponent implements OnInit {
   constructor(private service: GifsService, private sainitzer: DomSanitizer) {}
 
   ngOnInit(): void {
+    console.log('%c Home component initialized', 'background: blue');
     this.checkLocalSearch();
     this.searchGifs();
     //this.AutoUnsub();
