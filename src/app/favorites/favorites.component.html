@@ -45,17 +45,17 @@
 <div class="container-fluid">
   <div class="card-group">
     <div *ngFor="let gif of getFavorites()">
-      <div *ngIf="!this.contentLoaded">
-        <div class="card mx-lg-auto">
+      <div *ngIf="this.contentLoaded">
+        <div class="card">
           <ngx-skeleton-loader
             count="1"
             appearance="line"
             animation="progress-dark"
-            >x</ngx-skeleton-loader
+            >xdwa</ngx-skeleton-loader
           >
         </div>
       </div>
-      <div *ngIf="this.contentLoaded">
+      <div *ngIf="!this.contentLoaded">
         <div class="card">
           <iframe
             [src]="gifURL(gif.embed_url)"

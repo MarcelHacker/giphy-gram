@@ -17,35 +17,29 @@ import {
   animations: [],
 })
 export class FavoritesComponent implements OnInit {
-  public contentLoaded = false;
+  public contentLoaded = true;
 
   constructor(private sainitzer: DomSanitizer, private service: GifsService) {}
 
   ngOnInit(): void {
-    setInterval(() => {
-      this.contentLoaded = true;
-    }, 2000);
-    this.service.setLoading(false);
-    console.table(localStorage);
+    console.log('%c Hi', 'background: red');
   }
 
   getFavorites() {
-    let array = {};
+    let container = {};
     var text;
-    //this.clearLocalStorage();
 
     if (localStorage.length != 0) {
       text = localStorage.getItem('savedGifs');
-      console.log('Text: ' + text);
+
       if (text != null) {
         text.slice(1, 2);
         text.slice(text.length);
       }
 
-      array = JSON.parse(text as any);
+      container = JSON.parse(text as any);
 
-      console.table('Array:' + array);
-      return array as any;
+      return container as any;
     } else {
       return null;
     }
@@ -58,7 +52,6 @@ export class FavoritesComponent implements OnInit {
 
     ar = localStorage.getItem('savedGifs');
     array = JSON.parse(ar as any);
-    console.log('Removing array: ' + array);
 
     for (let i = 0; i < array.length; i++) {
       if (array[i].id != id) {
