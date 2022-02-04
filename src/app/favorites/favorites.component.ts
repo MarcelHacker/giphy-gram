@@ -18,6 +18,7 @@ import {
 })
 export class FavoritesComponent implements OnInit {
   public contentLoaded = false;
+
   constructor(private sainitzer: DomSanitizer, private service: GifsService) {}
 
   ngOnInit(): void {

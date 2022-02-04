@@ -54,23 +54,25 @@ export class GifsComponent implements OnInit {
   constructor(private service: GifsService, private sainitzer: DomSanitizer) {}
 
   ngOnInit(): void {
-    setInterval(() => {
-      this.loading = false;
-    }, 3000);
-    this.service.setLoading(false);
     this.checkLocalSearch();
     this.searchGifs();
     //this.AutoUnsub();
-    console.log('content: ' + this.service.getLoading());
-    this.service.setLoading(true);
+    setInterval(() => {
+      this.loading = false;
+    }, 2000);
   }
 
   checkLocalSearch() {
     if (this.term == '') {
       this.service.setSearchTerm('Arnold Schwarzenegger');
-      console.log('Search set to Arni');
+      console.log(
+        '%c Auf lokalen Speicher geschrieben',
+        'background: #222; color: #bada55'
+      );
     } else {
-      console.log('Speicher gefunden: ' + this.service.getSearchTerm());
+      console.info(
+        'Im lokalen Speicher gefunden: ' + this.service.getSearchTerm()
+      );
       this.service.setSearchTerm(this.term);
     }
   }
