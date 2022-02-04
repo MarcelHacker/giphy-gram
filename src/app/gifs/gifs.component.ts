@@ -78,11 +78,15 @@ export class GifsComponent implements OnInit {
   }
 
   searchGifs() {
+    this.loading = true;
     this.checkLocalSearch();
     this.service.getGifs().subscribe((result: Object) => {
       console.table(result);
       this.gifs = result;
     });
+    setInterval(() => {
+      this.loading = false;
+    }, 2000);
   }
 
   showData() {

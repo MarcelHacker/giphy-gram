@@ -8,7 +8,7 @@ import { Gif } from '../interface/gif';
 export class GifsService {
   public search = '';
   public api_key = 'VnF5KY4LRWTrdCIlHNdNXWjMKN9BSPxL'; // created own key, because old doesn't work
-  public limit = '30';
+  public limit = '15';
   public url = '';
   public loading = false;
 

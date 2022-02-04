@@ -22,6 +22,9 @@ export class FavoritesComponent implements OnInit {
   constructor(private sainitzer: DomSanitizer, private service: GifsService) {}
 
   ngOnInit(): void {
+    setInterval(() => {
+      this.contentLoaded = true;
+    }, 2000);
     this.service.setLoading(false);
     console.table(localStorage);
   }
