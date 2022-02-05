@@ -1,0 +1,26 @@
+<div *ngIf="this.gif">
+    <div class="card">
+      <iframe
+        [src]="gifURL(this.gif.embed_url)"
+        [width]="this.gif.images.original.width"
+        [height]="this.gif.images.original.height"
+        frameBorder="0"
+        class="giphy-embed"
+        allowFullScreen
+      ></iframe>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">
+        <div class="mx-auto d-grid gap-2 col-2">
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="onClick(this.gif.id)"
+            [hidden]="this.gif.hideAddFavouritesButton"
+          >
+            <i class="bi bi-plus"></i>
+          </button></div
+      ></small>
+    </div>
+  </div>
+</div>
