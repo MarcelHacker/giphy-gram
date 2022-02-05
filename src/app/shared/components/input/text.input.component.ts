@@ -7,6 +7,7 @@ import {
   ViewChild,
   ElementRef,
 } from '@angular/core';
+import { LoaderComponent } from './../loader/loader.component';
 
 @Component({
   selector: 'app-text-input',
@@ -16,6 +17,7 @@ import {
 export class TextInputComponent implements OnInit {
   @Input() placeholder: String;
   @Input() hasClear: Boolean;
+  @Input() loading: Boolean;
   @Output() onClick: EventEmitter<any> = new EventEmitter<any>();
   @Output() onChange: EventEmitter<any> = new EventEmitter<any>();
   @Output() onBlur: EventEmitter<any> = new EventEmitter<any>();
@@ -27,6 +29,7 @@ export class TextInputComponent implements OnInit {
     this.value = '';
     this.placeholder = '';
     this.hasClear = true;
+    this.loading = false;
   }
 
   ngOnInit(): void {}

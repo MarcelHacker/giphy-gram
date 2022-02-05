@@ -16,9 +16,14 @@ import {
 })
 export class SearchComponent implements OnInit {
   public text = '';
+  @Input() hasClear: Boolean;
+  @Input() loading: Boolean;
   @Output() search: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor() {}
+  constructor() {
+    this.hasClear = true;
+    this.loading = true;
+  }
 
   ngOnInit(): void {}
 

@@ -5,3 +5,10 @@
   background-color: #d24191;
   border: 0px solid white;
 }
+
+.text-input-icon {
+  position: absolute;
+  left: 93%;
+  /* top: 0; */
+  z-index: 100;
+}

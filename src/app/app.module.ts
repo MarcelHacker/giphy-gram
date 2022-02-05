@@ -16,6 +16,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { StoreModule } from '@ngrx/store';
 import { gifReducer } from './store/storage.reducer';
 import { SearchComponent } from './shared/components/search/search.component';
+import { LoaderComponent } from './shared/components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { SearchComponent } from './shared/components/search/search.component';
     FavoritesComponent,
     SearchComponent,
     TextInputComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

@@ -10,11 +10,17 @@
   />
   <button
     type="button"
-    class="btn bg-transparent"
-    style="margin-left: -40px; z-index: 100"
-    [hidden]="!this.hasClear || !this.value.length"
+    class="btn bg-transparent text-input-icon"
+    [hidden]="this.loading || !this.hasClear || !this.value.length"
   >
     <i class="fa fa-times"></i>
+  </button>
+  <button
+    type="button"
+    class="btn bg-transparent text-input-icon"
+    [hidden]="!this.loading"
+  >
+    <app-loader></app-loader>
   </button>
   <ng-content></ng-content>
 </div>

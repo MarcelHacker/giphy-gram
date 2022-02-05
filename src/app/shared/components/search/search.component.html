@@ -1,4 +1,9 @@
-<app-text-input [(value)]="this.text" (keyup.enter)="handleSearch()">
+<app-text-input
+  [(value)]="this.text"
+  (keyup.enter)="handleSearch()"
+  [loading]="this.loading"
+  [hasClear]="this.hasClear"
+>
   <button class="btn btn-outline-dark" type="button" (click)="handleSearch()">
     <i class="fas fa-search"></i>
   </button>
