@@ -8,16 +8,26 @@ import { AppComponent } from './app.component';
 import { GifsComponent } from './gifs/gifs.component';
 import { GifsService } from './services/gifs.service';
 import { FavoritesComponent } from './favorites/favorites.component';
+import { TextInputComponent } from './shared/components/input/text.input.component';
 import { FormsModule } from '@angular/forms'; // for two-way databinding
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 import { StoreModule } from '@ngrx/store';
 import { gifReducer } from './store/storage.reducer';
+import { CommonModule } from '@angular/common';
+import { SearchComponent } from './shared/components/search/search.component';
 
 @NgModule({
-  declarations: [AppComponent, GifsComponent, FavoritesComponent],
+  declarations: [
+    AppComponent,
+    GifsComponent,
+    FavoritesComponent,
+    SearchComponent,
+    TextInputComponent,
+  ],
   imports: [
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,

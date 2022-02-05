@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GifsService } from '../services/gifs.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { SearchComponent } from '../shared/components/search/search.component';
 import {
   trigger,
   style,
@@ -17,33 +18,33 @@ import {
   styleUrls: ['./gifs.component.css'],
   animations: [
     //* to do make this work
-    trigger('openClose', [
-      // ...
-      state(
-        'open',
-        style({
-          height: '200px',
-          opacity: 1,
-          backgroundColor: 'yellow',
-        })
-      ),
-      state(
-        'closed',
-        style({
-          height: '100px',
-          opacity: 0.8,
-          backgroundColor: 'blue',
-        })
-      ),
-      transition('* => closed', [animate('1s')]),
-      transition('* => open', [animate('0.5s')]),
-    ]),
-    trigger('fadeIn', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('1500ms', style({ opacity: 1 })),
-      ]),
-    ]),
+    // trigger('openClose', [
+    //   // ...
+    //   state(
+    //     'open',
+    //     style({
+    //       height: '200px',
+    //       opacity: 1,
+    //       backgroundColor: 'yellow',
+    //     })
+    //   ),
+    //   state(
+    //     'closed',
+    //     style({
+    //       height: '100px',
+    //       opacity: 0.8,
+    //       backgroundColor: 'blue',
+    //     })
+    //   ),
+    //   transition('* => closed', [animate('1s')]),
+    //   transition('* => open', [animate('0.5s')]),
+    // ]),
+    // trigger('fadeIn', [
+    //   transition(':enter', [
+    //     style({ opacity: 0 }),
+    //     animate('1500ms', style({ opacity: 1 })),
+    //   ]),
+    // ]),
   ],
 })
 export class GifsComponent implements OnInit {

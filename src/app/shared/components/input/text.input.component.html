@@ -1,0 +1,18 @@
+<div class="input-group">
+  <div class="form-group has-feedback has-clear">
+    <input
+      type="text"
+      id="app-text-input"
+      class="form-control"
+      [placeholder]="this.placeholder"
+      (onClick)="click()"
+      (onChange)="change($event)"
+      (onBlur)="blur($event)"
+    />
+    <div
+      class="'form-control-clear glyphicon glyphicon-remove form-control-feedback"
+      [hidden]="this.hasClear"
+    ></div>
+  </div>
+  <ng-content></ng-content>
+</div>
