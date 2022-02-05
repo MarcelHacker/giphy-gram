@@ -1,0 +1,14 @@
+:host >>> ngx-skeleton-loader .loader {
+  border-radius: 8px;
+  height: 200px;
+  width: 300px;
+  background-color: #d24191;
+  border: 0px solid white;
+}
+
+.search-icon {
+  position: absolute;
+  z-index: 100;
+  left: 95%;
+  top: 30%;
+}

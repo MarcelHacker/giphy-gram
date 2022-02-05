@@ -1,10 +1,22 @@
-<app-text-input
-  [(value)]="this.text"
-  (keyup.enter)="handleSearch()"
-  [loading]="this.loading"
-  [hasClear]="this.hasClear"
->
-  <button class="btn btn-outline-dark" type="button" (click)="handleSearch()">
-    <i class="fas fa-search"></i>
-  </button>
-</app-text-input>
+<div class="input-group">
+  <input
+    type="text"
+    class="form-control"
+    [placeholder]="this.placeholder"
+    [(ngModel)]="this.value"
+    (ngModelChange)="change($event)"
+    (keyup.enter)="enter(this.value)"
+  />
+  <i
+    role="button"
+    class="fa fa-times search-icon"
+    [hidden]="this.loading || !this.hasClear || !this.value.length"
+  ></i>
+  <!-- <button
+    type="button"
+    class="btn bg-transparent search-icon"
+    [hidden]="!this.loading"
+  >
+    <app-loader></app-loader>
+  </button> -->
+</div>

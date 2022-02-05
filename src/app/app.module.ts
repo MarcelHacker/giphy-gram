@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { GifsComponent } from './gifs/gifs.component';
 import { GifsService } from './services/gifs.service';
 import { FavoritesComponent } from './favorites/favorites.component';
-import { TextInputComponent } from './shared/components/input/text.input.component';
 import { FormsModule } from '@angular/forms'; // for two-way databinding
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
@@ -24,8 +23,7 @@ import { LoaderComponent } from './shared/components/loader/loader.component';
     GifsComponent,
     FavoritesComponent,
     SearchComponent,
-    TextInputComponent,
-    LoaderComponent
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
