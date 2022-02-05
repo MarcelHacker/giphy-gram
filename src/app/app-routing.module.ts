@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FavoritesComponent } from './favorites/favorites.component';
-import { GifsComponent } from './gifs/gifs.component';
+import { GifsComponent } from './shared/gifs/gifs.component';
 
 const routes: Routes = [
   { path: '', component: GifsComponent },

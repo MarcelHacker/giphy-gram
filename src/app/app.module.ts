@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GifsComponent } from './gifs/gifs.component';
+import { GifsComponent } from './shared/gifs/gifs.component';
 import { GifsService } from './services/gifs.service';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { FormsModule } from '@angular/forms'; // for two-way databinding
@@ -16,6 +16,11 @@ import { StoreModule } from '@ngrx/store';
 import { gifReducer } from './store/storage.reducer';
 import { SearchComponent } from './shared/components/search/search.component';
 import { LoaderComponent } from './shared/components/loader/loader.component';
+import { HeaderComponent } from './core/header/header.component';
+import { FooterComponent } from './core/footer/footer.component';
+import { HomeComponent } from './modules/home/home.component';
+import { FavouritesComponent } from './modules/favourites/favourites.component';
+import { GifComponent } from './shared/components/gif/gif.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +29,11 @@ import { LoaderComponent } from './shared/components/loader/loader.component';
     FavoritesComponent,
     SearchComponent,
     LoaderComponent,
+    HeaderComponent,
+    FooterComponent,
+    HomeComponent,
+    FavouritesComponent,
+    GifComponent,
   ],
   imports: [
     BrowserModule,
