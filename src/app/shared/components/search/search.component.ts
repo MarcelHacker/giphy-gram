@@ -15,7 +15,10 @@ import {
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent implements OnInit {
+  public text = '';
   constructor() {}
 
   ngOnInit(): void {}
+
+  handleSearch() {}
 }

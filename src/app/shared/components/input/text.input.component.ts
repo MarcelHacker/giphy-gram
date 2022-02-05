@@ -20,22 +20,18 @@ export class TextInputComponent implements OnInit {
   @Output() onChange: EventEmitter<any> = new EventEmitter<any>();
   @Output() onBlur: EventEmitter<any> = new EventEmitter<any>();
 
+  @Input() value: String;
+  @Output() valueChange: EventEmitter<any> = new EventEmitter<any>();
+
   constructor() {
-    this.placeholder = 'HI';
+    this.value = '';
+    this.placeholder = '';
     this.hasClear = true;
   }
 
   ngOnInit(): void {}
 
-  click() {
-    this.onClick.emit();
-  }
-
   change(event: any) {
-    this.onChange.emit(event);
-  }
-
-  blur(event: any) {
-    this.onBlur.emit(event);
+    this.valueChange.emit(event);
   }
 }

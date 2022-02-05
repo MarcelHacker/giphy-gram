@@ -1,18 +1,19 @@
 <div class="input-group">
-  <div class="form-group has-feedback has-clear">
-    <input
-      type="text"
-      id="app-text-input"
-      class="form-control"
-      [placeholder]="this.placeholder"
-      (onClick)="click()"
-      (onChange)="change($event)"
-      (onBlur)="blur($event)"
-    />
-    <div
-      class="'form-control-clear glyphicon glyphicon-remove form-control-feedback"
-      [hidden]="this.hasClear"
-    ></div>
-  </div>
+  <input
+    type="text"
+    id="app-text-input"
+    class="form-control"
+    [placeholder]="this.placeholder"
+    [(ngModel)]="this.value"
+    (ngModelChange)="change($event)"
+  />
+  <button
+    type="button"
+    class="btn bg-transparent"
+    style="margin-left: -40px; z-index: 100"
+    [hidden]="!this.hasClear || !this.value.length"
+  >
+    <i class="fa fa-times"></i>
+  </button>
   <ng-content></ng-content>
 </div>

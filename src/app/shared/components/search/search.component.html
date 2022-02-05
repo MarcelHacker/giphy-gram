@@ -1,6 +1,6 @@
-<app-text-input>
+<app-text-input [(value)]="this.text">
   <div class="input-group-append">
-    <button class="btn btn-success" type="button">
+    <button class="btn btn-light" type="button" (click)="handleSearch()">
       <i class="fas fa-search"></i>
     </button>
   </div>
