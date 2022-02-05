@@ -6,6 +6,7 @@
     [placeholder]="this.placeholder"
     [(ngModel)]="this.value"
     (ngModelChange)="change($event)"
+    (keyup.enter)="enter(this.value)"
   />
   <button
     type="button"

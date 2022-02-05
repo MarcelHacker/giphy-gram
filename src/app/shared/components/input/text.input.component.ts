@@ -34,4 +34,8 @@ export class TextInputComponent implements OnInit {
   change(event: any) {
     this.valueChange.emit(event);
   }
+
+  enter(event: any) {
+    this.valueChange.emit(event);
+  }
 }
