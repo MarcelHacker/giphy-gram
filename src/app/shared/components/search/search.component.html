@@ -8,16 +8,18 @@
     (onBlur)="handleBlur($event)"
     (onFocus)="handleFocus($event)"
   />
-  <i
-    role="button"
-    class="fa fa-times search-icon"
-    [hidden]="this.loading || !this.hasClear || !this.value.length"
-  ></i>
-  <!-- <button
-    type="button"
-    class="btn bg-transparent search-icon"
-    [hidden]="!this.loading"
-  >
-    <app-loader></app-loader>
-  </button> -->
+  <div class="position-relative">
+    <i
+      role="button"
+      (click)="handleClear()"
+      class="fa fa-times position-absolute top-50 end-0 translate-middle-y search-icon"
+      [hidden]="this.loading || !this.hasClear || !this.value.length"
+    ></i>
+  </div>
+  <div class="position-relative">
+    <app-loader
+      class="position-absolute top-50 end-0 translate-middle-y search-icon"
+      [hidden]="!this.loading"
+    ></app-loader>
+  </div>
 </div>

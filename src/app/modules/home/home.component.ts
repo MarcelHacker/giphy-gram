@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   public gifs: Array<Object> = [];
   public term = '';
   public loading = false;
+  public loaded = false;
 
   // triggered by html, rate-limited in milliseconds
   public searchChangedSubject = new Subject<string>();
@@ -24,17 +25,32 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // TODO: Check on mount why Keine Ergebnisse shown
+    this.loaded = false;
+
     this.searchGifs();
+
+    this.loaded = true;
     //this.AutoUnsub();
   }
 
   searchGifs(searchValue?: string) {
-    this.service.getGifs(searchValue).subscribe((result: any) => {
-      const data: Array<Gif> = result?.data;
+    this.loading = true;
+    this.service.getGifs(searchValue).subscribe(
+      (result: any) => {
+        const data: Array<Gif> = result?.data;
 
-      console.log(data);
-      this.gifs = data;
-    });
+        console.log(data);
+
+        this.gifs = data;
+        this.loading = false;
+      },
+      (error: any) => {
+        console.error(error);
+
+        this.loading = false;
+      }
+    );
   }
 
   showData() {
@@ -113,12 +129,16 @@ export class HomeComponent implements OnInit {
   handleSearchBlur(event: any) {
     const searchValue: String = this.getSearchEventValue(event);
 
-    this.searchGifs();
+    // this.searchGifs();
   }
 
   handleSearchFocus(event: any) {
     const searchValue: String = this.getSearchEventValue(event);
 
+    // this.searchGifs();
+  }
+
+  handleSearchClear() {
     this.searchGifs();
   }
 }

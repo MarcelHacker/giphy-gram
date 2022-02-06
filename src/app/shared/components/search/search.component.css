@@ -7,8 +7,5 @@
 }
 
 .search-icon {
-  position: absolute;
   z-index: 100;
-  left: 95%;
-  top: 30%;
 }

@@ -21,6 +21,7 @@ export class SearchComponent implements OnInit {
   @Output() change: EventEmitter<any> = new EventEmitter<any>();
   @Output() blur: EventEmitter<any> = new EventEmitter<any>();
   @Output() focus: EventEmitter<any> = new EventEmitter<any>();
+  @Output() clear: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {}
 
@@ -36,5 +37,11 @@ export class SearchComponent implements OnInit {
 
   handleFocus(event: any) {
     this.focus.emit(event);
+  }
+
+  handleClear() {
+    this.value = '';
+
+    this.clear.emit();
   }
 }

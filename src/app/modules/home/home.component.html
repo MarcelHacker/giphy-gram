@@ -6,7 +6,12 @@
     class="w-50"
     (change)="handleSearchChange($event)"
     (blur)="handleSearchBlur($event)"
+    (clear)="handleSearchClear()"
     (focus)="handleSearchFocus($event)"
+    [loading]="this.loading"
   ></app-search>
 </div>
-<app-gifs [gifs]="this.gifs"></app-gifs>
+<app-gifs *ngIf="this.gifs.length" [gifs]="this.gifs"></app-gifs>
+<span *ngIf="!this.gifs.length" class="text-center"
+  >Keine Ergebnisse gefunden</span
+>
