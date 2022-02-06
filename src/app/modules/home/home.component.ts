@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { GifsService } from 'src/app/services/gifs.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
   public gifs = {};
   public term = '';
   public loading = true;
 
-  constructor(private service: GifsService, private sainitzer: DomSanitizer) {}
+  constructor(private service: GifsService) {}
 
   ngOnInit(): void {
     console.log('%c Home component initialized', 'background: blue');
@@ -97,11 +98,6 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  gifURL(url: string) {
-    // get rid of unsave url
-    return this.sainitzer.bypassSecurityTrustResourceUrl(url);
-  }
-
   AutoUnsub() {
     return function (constructor: any) {
       const orig = constructor.prototype.ngOnDestroy;
@@ -115,5 +111,5 @@ export class HomeComponent implements OnInit {
         orig.apply();
       };
     };
-
+  }
 }

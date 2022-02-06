@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GifsComponent } from './shared/gifs/gifs.component';
+import { GifsComponent } from './shared/components/gifs/gifs.component';
 import { GifsService } from './services/gifs.service';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { FormsModule } from '@angular/forms'; // for two-way databinding
@@ -21,6 +22,8 @@ import { FooterComponent } from './core/footer/footer.component';
 import { HomeComponent } from './modules/home/home.component';
 import { FavouritesComponent } from './modules/favourites/favourites.component';
 import { GifComponent } from './shared/components/gif/gif.component';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -37,12 +40,15 @@ import { GifComponent } from './shared/components/gif/gif.component';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
+    RouterModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
     FormsModule,
+    CommonModule,
     ReactiveFormsModule,
     NgxSkeletonLoaderModule,
-    HttpClientModule,
+
     StoreModule.forRoot({ gif: gifReducer }, {}),
   ],
   providers: [GifsService],

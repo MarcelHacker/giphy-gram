@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { GifsService } from '../../services/gifs.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { SearchComponent } from '../components/search/search.component';
 import {
   trigger,
   style,
@@ -49,8 +47,10 @@ import {
 })
 export class GifsComponent implements OnInit {
   @Input() gifs: Array<Object>;
+  @Input() loading: Boolean;
 
   constructor() {
+    this.loading = true;
     this.gifs = [];
   }
 

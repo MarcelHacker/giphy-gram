@@ -1,5 +1,5 @@
 export interface Images {
-  fixed_height: {
+  fixed_height?: {
     url: string;
     width: string;
     height: string;
@@ -10,13 +10,13 @@ export interface Images {
     webp_size: string;
   };
 
-  fixed_height_still: {
+  fixed_height_still?: {
     url: string;
     width: string;
     height: string;
   };
 
-  fixed_height_downsampled: {
+  fixed_height_downsampled?: {
     url: string;
     width: string;
     height: string;
@@ -25,7 +25,7 @@ export interface Images {
     webp_size: string;
   };
 
-  fixed_width: {
+  fixed_width?: {
     url: string;
     width: string;
     height: string;
@@ -36,13 +36,13 @@ export interface Images {
     webp_size: string;
   };
 
-  fixed_width_still: {
+  fixed_width_still?: {
     url: string;
     width: string;
     height: string;
   };
 
-  fixed_width_downsampled: {
+  fixed_width_downsampled?: {
     url: string;
     width: string;
     height: string;
@@ -51,7 +51,7 @@ export interface Images {
     webp_size: string;
   };
 
-  fixed_height_small: {
+  fixed_height_small?: {
     url: string;
     width: string;
     height: string;
@@ -62,13 +62,13 @@ export interface Images {
     webp_size: string;
   };
 
-  fixed_height_small_still: {
+  fixed_height_small_still?: {
     url: string;
     width: string;
     height: string;
   };
 
-  fixed_width_small: {
+  fixed_width_small?: {
     url: string;
     width: string;
     height: string;
@@ -79,40 +79,40 @@ export interface Images {
     webp_size: string;
   };
 
-  fixed_width_small_still: {
+  fixed_width_small_still?: {
     url: string;
     width: string;
     height: string;
   };
 
-  downsized: {
-    url: string;
-    width: string;
-    height: string;
-    size: string;
-  };
-
-  downsized_still: {
-    url: string;
-    width: string;
-    height: string;
-  };
-
-  downsized_large: {
+  downsized?: {
     url: string;
     width: string;
     height: string;
     size: string;
   };
 
-  downsized_medium: {
+  downsized_still?: {
+    url: string;
+    width: string;
+    height: string;
+  };
+
+  downsized_large?: {
     url: string;
     width: string;
     height: string;
     size: string;
   };
 
-  downsized_small: {
+  downsized_medium?: {
+    url: string;
+    width: string;
+    height: string;
+    size: string;
+  };
+
+  downsized_small?: {
     mp4: string;
     width: string;
     height: string;
@@ -122,32 +122,32 @@ export interface Images {
   original: {
     width: string;
     height: string;
-    size: string;
-    frames: string;
-    mp4: string;
-    mp4_size: string;
-    webp: string;
-    webp_size: string;
+    size?: string;
+    frames?: string;
+    mp4?: string;
+    mp4_size?: string;
+    webp?: string;
+    webp_size?: string;
   };
 
-  original_still: {
+  original_still?: {
     url: string;
     width: string;
     height: string;
   };
 
-  looping: {
+  looping?: {
     mp4: string;
   };
 
-  preview: {
+  preview?: {
     mp4: string;
     mp4_size: string;
     width: string;
     height: string;
   };
 
-  preview_gif: {
+  preview_gif?: {
     url: string;
     width: string;
     height: string;
