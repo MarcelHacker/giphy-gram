@@ -4,8 +4,9 @@
     class="form-control"
     [placeholder]="this.placeholder"
     [(ngModel)]="this.value"
-    (ngModelChange)="change($event)"
-    (keyup.enter)="enter(this.value)"
+    (ngModelChange)="handleChange($event)"
+    (onBlur)="handleBlur($event)"
+    (onFocus)="handleFocus($event)"
   />
   <i
     role="button"

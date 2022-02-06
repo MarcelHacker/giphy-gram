@@ -14,30 +14,27 @@ import {
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent implements OnInit {
-  @Input() placeholder: String;
-  @Input() hasClear: Boolean;
-  @Input() loading: Boolean;
-  @Output() onClick: EventEmitter<any> = new EventEmitter<any>();
-  @Output() onChange: EventEmitter<any> = new EventEmitter<any>();
-  @Output() onBlur: EventEmitter<any> = new EventEmitter<any>();
+  @Input() placeholder: String = '';
+  @Input() hasClear: Boolean = true;
+  @Input() loading: Boolean = false;
+  @Input() value: String = '';
+  @Output() change: EventEmitter<any> = new EventEmitter<any>();
+  @Output() blur: EventEmitter<any> = new EventEmitter<any>();
+  @Output() focus: EventEmitter<any> = new EventEmitter<any>();
 
-  @Input() value: String;
-  @Output() valueChange: EventEmitter<any> = new EventEmitter<any>();
-
-  constructor() {
-    this.value = '';
-    this.placeholder = '';
-    this.hasClear = true;
-    this.loading = false;
-  }
+  constructor() {}
 
   ngOnInit(): void {}
 
-  change(event: any) {
-    this.valueChange.emit(event);
+  handleChange(event: any) {
+    this.change.emit(event);
   }
 
-  enter(event: any) {
-    this.valueChange.emit(event);
+  handleBlur(event: any) {
+    this.blur.emit(event);
+  }
+
+  handleFocus(event: any) {
+    this.focus.emit(event);
   }
 }

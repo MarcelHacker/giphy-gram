@@ -6,7 +6,7 @@ import { Gif } from '../interface/gif';
 
 @Injectable()
 export class GifsService {
-  public search = '';
+  public search?: string = '';
   public api_key = 'VnF5KY4LRWTrdCIlHNdNXWjMKN9BSPxL'; // created own key, because old doesn't work
   public limit = '5';
   public url = '';
@@ -14,17 +14,22 @@ export class GifsService {
 
   constructor(private http: HttpClient) {}
 
-  getGifs(): Observable<Gif[]> {
+  getGifs(searchValue?: string): Observable<Gif[]> {
+    this.search = searchValue || 'Arnold Schwarzenegger'; // Set default value if not set
+
     this.setURL();
+
     console.log('Datenerfassung: ' + this.url);
-    var response = this.http.get<Gif[]>(this.url);
+
+    const response = this.http.get<Gif[]>(this.url);
+
     console.log('Response:' + response);
+
     return response;
   }
 
   // Setters
   setURL() {
-    this.search = this.getSearchTerm() as any;
     this.url = `http://api.giphy.com/v1/gifs/search?q=${this.search}&api_key=${this.api_key}&limit=${this.limit}`;
   }
 
@@ -36,11 +41,6 @@ export class GifsService {
   setLoading(statement: boolean) {
     this.loading = statement;
     console.log(this.loading);
-  }
-
-  //Getters
-  getSearchTerm() {
-    return localStorage.getItem('search');
   }
 
   getLoading() {

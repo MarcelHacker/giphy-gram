@@ -11,12 +11,10 @@ export class HomeComponent implements OnInit {
   public gifs: Array<Object> = [];
   public term = '';
   public loading = true;
-
   constructor(private service: GifsService) {}
 
   ngOnInit(): void {
     console.log('%c Home component initialized', 'background: blue');
-    this.checkLocalSearch();
     this.searchGifs();
     //this.AutoUnsub();
     setInterval(() => {
@@ -24,25 +22,9 @@ export class HomeComponent implements OnInit {
     }, 2000);
   }
 
-  checkLocalSearch() {
-    if (this.term == '') {
-      this.service.setSearchTerm('Arnold Schwarzenegger');
-      console.log(
-        '%c Auf lokalen Speicher geschrieben',
-        'background: #222; color: #bada55'
-      );
-    } else {
-      console.info(
-        'Im lokalen Speicher gefunden: ' + this.service.getSearchTerm()
-      );
-      this.service.setSearchTerm(this.term);
-    }
-  }
-
-  searchGifs() {
+  searchGifs(searchValue?: string) {
     this.loading = true;
-    this.checkLocalSearch();
-    this.service.getGifs().subscribe((result: any) => {
+    this.service.getGifs(searchValue).subscribe((result: any) => {
       const data: Array<Gif> = result?.data;
 
       console.log(data);
@@ -114,5 +96,27 @@ export class HomeComponent implements OnInit {
         orig.apply();
       };
     };
+  }
+
+  getSearchEventValue(event: any) {
+    return event?.target ? event?.target?.value : event || '';
+  }
+
+  handleSearchChange(event: any) {
+    const searchValue: string = this.getSearchEventValue(event);
+
+    this.searchGifs(searchValue);
+  }
+
+  handleSearchBlur(event: any) {
+    const searchValue: String = this.getSearchEventValue(event);
+
+    this.searchGifs();
+  }
+
+  handleSearchFocus(event: any) {
+    const searchValue: String = this.getSearchEventValue(event);
+
+    this.searchGifs();
   }
 }

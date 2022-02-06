@@ -2,6 +2,11 @@
 <div
   class="align-items-center mr-auto ml-auto d-flex justify-content-center mt-4 mb-4"
 >
-  <app-search class="w-50"></app-search>
+  <app-search
+    class="w-50"
+    (change)="handleSearchChange($event)"
+    (blur)="handleSearchBlur($event)"
+    (focus)="handleSearchFocus($event)"
+  ></app-search>
 </div>
 <app-gifs [gifs]="this.gifs"></app-gifs>
