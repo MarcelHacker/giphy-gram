@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Gif } from 'src/app/interface/gif';
 import { GifsService } from 'src/app/services/gifs.service';
+import { debounceTime } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +13,15 @@ export class HomeComponent implements OnInit {
   public gifs: Array<Object> = [];
   public term = '';
   public loading = false;
-  constructor(private service: GifsService) {}
+
+  // triggered by html, rate-limited in milliseconds
+  public searchChangedSubject = new Subject<string>();
+
+  constructor(private service: GifsService) {
+    this.searchChangedSubject
+      .pipe(debounceTime(250))
+      .subscribe((s) => this.searchGifs(s));
+  }
 
   ngOnInit(): void {
     this.searchGifs();
@@ -97,7 +107,7 @@ export class HomeComponent implements OnInit {
   handleSearchChange(event: any) {
     const searchValue: string = this.getSearchEventValue(event);
 
-    this.searchGifs(searchValue);
+    this.searchChangedSubject.next(searchValue);
   }
 
   handleSearchBlur(event: any) {
