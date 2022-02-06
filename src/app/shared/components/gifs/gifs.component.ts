@@ -37,12 +37,12 @@ import {
     //   transition('* => closed', [animate('1s')]),
     //   transition('* => open', [animate('0.5s')]),
     // ]),
-    // trigger('fadeIn', [
-    //   transition(':enter', [
-    //     style({ opacity: 0 }),
-    //     animate('1500ms', style({ opacity: 1 })),
-    //   ]),
-    // ]),
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('1500ms', style({ opacity: 1 })),
+      ]),
+    ]),
   ],
 })
 export class GifsComponent implements OnInit {
@@ -50,7 +50,7 @@ export class GifsComponent implements OnInit {
   @Input() loading: Boolean;
 
   constructor() {
-    this.loading = true;
+    this.loading = false;
     this.gifs = [];
   }
 

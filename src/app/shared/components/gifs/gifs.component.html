@@ -11,7 +11,7 @@
             ></ngx-skeleton-loader>
           </div>
         </div>
-        <div *ngIf="!loading" @fadeIn>
+        <div *ngIf="!this.loading" @fadeIn>
           <app-gif [gif]="gif"></app-gif>
         </div>
       </div>

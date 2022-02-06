@@ -10,29 +10,21 @@ import { GifsService } from 'src/app/services/gifs.service';
 export class HomeComponent implements OnInit {
   public gifs: Array<Object> = [];
   public term = '';
-  public loading = true;
+  public loading = false;
   constructor(private service: GifsService) {}
 
   ngOnInit(): void {
-    console.log('%c Home component initialized', 'background: blue');
     this.searchGifs();
     //this.AutoUnsub();
-    setInterval(() => {
-      this.loading = false;
-    }, 2000);
   }
 
   searchGifs(searchValue?: string) {
-    this.loading = true;
     this.service.getGifs(searchValue).subscribe((result: any) => {
       const data: Array<Gif> = result?.data;
 
       console.log(data);
       this.gifs = data;
     });
-    setInterval(() => {
-      this.loading = false;
-    }, 2000);
   }
 
   showData() {
@@ -48,7 +40,7 @@ export class HomeComponent implements OnInit {
     let gifArray = [];
 
     gifArray = this.gifs as any;
-    // this.store.dispatch(saveGif());
+
     var object, buffer, payload, json;
     object = gifArray.data.find((element: any) => element.id == id);
     buffer = localStorage.getItem('savedGifs');
