@@ -10,7 +10,6 @@ import { Subject } from 'rxjs';
 })
 export class FavouritesComponent implements OnInit {
   public favouriteGifs: Array<Object> = [];
-  public term = '';
   public loading = false;
 
   // triggered by html, rate-limited in milliseconds
@@ -23,13 +22,34 @@ export class FavouritesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.searchFavouriteGifs();
+    this.loading = true;
+
+    this.favouriteGifs = this.searchFavouriteGifs();
+    console.log(this.favouriteGifs);
+    this.loading = false;
 
     //this.AutoUnsub();
   }
 
-  searchFavouriteGifs(searchValue?: string) {
-    this.loading = true;
+  searchFavouriteGifs(searchTerm?: string) {
+    const string_json = localStorage.getItem('savedGifs');
+    console.log(string_json);
+    if (string_json == null) {
+      return;
+    } else {
+      const array = JSON.parse(string_json);
+
+      if (searchTerm == '') {
+        console.log('ar' + array);
+        return array;
+      } else {
+        // TODO make event in child
+        console.log('Suche: ' + searchTerm);
+        let filteredGifs = array.find((title: string) => title == searchTerm);
+        console.log();
+        return filteredGifs;
+      }
+    }
   }
 
   getSearchEventValue(event: any) {

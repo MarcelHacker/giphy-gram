@@ -13,7 +13,6 @@ export class HomeComponent implements OnInit {
   public gifs: Array<Object> = [];
   public term = '';
   public loading = false;
-  public loaded = false;
 
   // triggered by html, rate-limited in milliseconds
   public searchChangedSubject = new Subject<string>();
@@ -25,43 +24,18 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loaded = false;
-
     this.searchGifs();
-    this.setFavouriteButtonProperty();
 
-    this.loaded = true;
     //this.AutoUnsub();
   }
   addGifToFavourites(event: any) {
     console.log('ADD: ', event);
-  }
-
-  searchGifs(searchValue?: string) {
-    this.loading = true;
-    this.service.getGifs(searchValue).subscribe(
-      (result: any) => {
-        const data: Array<Gif> = result?.data;
-
-        console.log(data);
-
-        this.gifs = data;
-        this.loading = false;
-      },
-      (error: any) => {
-        console.error(error);
-
-        this.loading = false;
-      }
-    );
-  }
-
-  addGif(id: string) {
+    const id = event;
     console.log('ID des Gifs: ' + id);
 
     const gifsArray: any = this.gifs;
     let json: string = '';
-    let object = gifsArray.data.find((element: any) => element.id == id);
+    let object = gifsArray.find((element: any) => element.id == id);
     let buffer = localStorage.getItem('savedGifs');
 
     if (buffer != null) {
@@ -77,6 +51,26 @@ export class HomeComponent implements OnInit {
     localStorage.setItem('savedGifs', json);
   }
 
+  searchGifs(searchValue?: string) {
+    this.loading = true;
+    this.service.getGifs(searchValue).subscribe(
+      (result: any) => {
+        const data: Array<Gif> = result?.data;
+
+        console.log(data);
+
+        this.gifs = data;
+        this.setFavouriteButtonProperty();
+        this.loading = false;
+      },
+      (error: any) => {
+        console.error(error);
+
+        this.loading = false;
+      }
+    );
+  }
+
   setFavouriteButtonProperty() {
     if (!this.gifs.length) {
       return;
@@ -86,6 +80,7 @@ export class HomeComponent implements OnInit {
         if (this.service.isGifFavourite(gifsArray[i].id) == true) {
           // add new property
           gifsArray[i].hideAddFavouritesButton = true;
+          console.log('button false' + i);
         }
       }
       gifsArray = this.gifs;
