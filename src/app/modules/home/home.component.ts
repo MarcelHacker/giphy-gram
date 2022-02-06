@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Gif } from 'src/app/interface/gif';
 import { GifsService } from 'src/app/services/gifs.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { GifsService } from 'src/app/services/gifs.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  public gifs = {};
+  public gifs: Array<Object> = [];
   public term = '';
   public loading = true;
 
@@ -41,9 +42,11 @@ export class HomeComponent implements OnInit {
   searchGifs() {
     this.loading = true;
     this.checkLocalSearch();
-    this.service.getGifs().subscribe((result: Object) => {
-      console.table(result);
-      this.gifs = result;
+    this.service.getGifs().subscribe((result: any) => {
+      const data: Array<Gif> = result?.data;
+
+      console.log(data);
+      this.gifs = data;
     });
     setInterval(() => {
       this.loading = false;
