@@ -33,6 +33,9 @@ export class HomeComponent implements OnInit {
     this.loaded = true;
     //this.AutoUnsub();
   }
+  addGifToFavourites(event: any) {
+    console.log('ADD: ', event);
+  }
 
   searchGifs(searchValue?: string) {
     this.loading = true;
@@ -107,8 +110,6 @@ export class HomeComponent implements OnInit {
   getSearchEventValue(event: any) {
     return event?.target ? event?.target?.value : event || '';
   }
-
-  
 
   handleSearchChange(event: any) {
     const searchValue: string = this.getSearchEventValue(event);

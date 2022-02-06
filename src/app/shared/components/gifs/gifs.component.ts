@@ -17,7 +17,8 @@ import { trigger, style, animate, transition } from '@angular/animations';
 export class GifsComponent implements OnInit {
   @Input() gifs: Array<Object>;
   @Input() loading: Boolean;
-
+  @Output() addFavouritesClickButton: EventEmitter<any> =
+    new EventEmitter<any>();
   constructor() {
     this.loading = false;
     this.gifs = [];
@@ -25,7 +26,7 @@ export class GifsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  handleAddFavouritesClick(event: any) {
-    console.log('ADD: ' + event?.target ? event?.target?.id : event || '');
+  handleAddFavouritesClick(id: any) {
+    this.addFavouritesClickButton.emit(id);
   }
 }
