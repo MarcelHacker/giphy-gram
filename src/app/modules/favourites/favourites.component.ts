@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Gif } from 'src/app/interface/gif';
-import { GifsService } from 'src/app/services/gifs.service';
+import { GifsService } from '../../services/gifs.service';
 import { debounceTime } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
@@ -31,38 +30,6 @@ export class FavouritesComponent implements OnInit {
 
   searchFavouriteGifs(searchValue?: string) {
     this.loading = true;
-    this.service.getGifs(searchValue).subscribe(
-      (result: any) => {
-        const data: Array<Gif> = result?.data;
-
-        console.log(data);
-
-        this.favouriteGifs = data;
-        this.loading = false;
-      },
-      (error: any) => {
-        console.error(error);
-
-        this.loading = false;
-      }
-    );
-  }
-
-  showFavoritesButton(id: number) {
-    // hide button when gif is already favorite
-    var array;
-    var text = localStorage.getItem('savedGifs');
-    if (text == null) {
-      return true;
-    } else {
-      array = JSON.parse(text as any);
-      for (let i = 0; i < array.length; i++) {
-        if (array[i].id == id) {
-          return false;
-        }
-      }
-      return true;
-    }
   }
 
   getSearchEventValue(event: any) {

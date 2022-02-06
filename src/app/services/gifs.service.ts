@@ -10,7 +10,6 @@ export class GifsService {
   public api_key = 'VnF5KY4LRWTrdCIlHNdNXWjMKN9BSPxL'; // created own key, because old doesn't work
   public limit = '5';
   public url = '';
-  public loading = false;
 
   constructor(private http: HttpClient) {}
 
@@ -38,13 +37,19 @@ export class GifsService {
     console.log('Setted: ' + localStorage.getItem('search'));
   }
 
-  setLoading(statement: boolean) {
-    this.loading = statement;
-    console.log(this.loading);
-  }
-
-  getLoading() {
-    return this.loading;
+  // Getters
+  isGifFavourite(id: string) {
+    if (localStorage.getItem('savedGifs') == null) {
+      return false;
+    } else {
+      const array = JSON.parse(localStorage.getItem('savedGifs'));
+      for (let i = 0; i < array.length; i++) {
+        if (array[i].id == id) {
+          return true;
+        }
+      }
+      return false;
+    }
   }
 
   // Development

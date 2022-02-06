@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Gif } from 'src/app/interface/gif';
-import { GifsService } from 'src/app/services/gifs.service';
+import { Gif } from '../../interface/gif';
+import { GifsService } from '../../services/gifs.service';
 import { debounceTime } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
     this.loaded = false;
 
     this.searchGifs();
+    this.setFavouriteButtonProperty();
 
     this.loaded = true;
     //this.AutoUnsub();
@@ -52,51 +53,39 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  showData() {
-    return this.gifs as any;
-  }
-
-  getContentLoading() {
-    return this.service.getLoading();
-  }
-
   addGif(id: string) {
-    console.log(id);
-    let gifArray = [];
+    console.log('ID des Gifs: ' + id);
 
-    gifArray = this.gifs as any;
-
-    var object, buffer, payload, json;
-    object = gifArray.data.find((element: any) => element.id == id);
-    buffer = localStorage.getItem('savedGifs');
+    const gifsArray: any = this.gifs;
+    let json: string = '';
+    let object = gifsArray.data.find((element: any) => element.id == id);
+    let buffer = localStorage.getItem('savedGifs');
 
     if (buffer != null) {
-      var array = JSON.parse(buffer);
+      let array = JSON.parse(buffer);
       console.log('buffer: ' + array);
       array.push(object);
       json = JSON.stringify(array);
     } else {
-      payload = JSON.stringify(object);
+      let payload = JSON.stringify(object);
       json = '[' + payload + ']';
     }
     console.log('Saved:' + json);
     localStorage.setItem('savedGifs', json);
   }
 
-  showFavoritesButton(id: number) {
-    // hide button when gif is already favorite
-    var array;
-    var text = localStorage.getItem('savedGifs');
-    if (text == null) {
-      return true;
+  setFavouriteButtonProperty() {
+    if (!this.gifs.length) {
+      return;
     } else {
-      array = JSON.parse(text as any);
-      for (let i = 0; i < array.length; i++) {
-        if (array[i].id == id) {
-          return false;
+      let gifsArray: any = this.gifs;
+      for (let i = 0; i < gifsArray.length; i++) {
+        if (this.service.isGifFavourite(gifsArray[i].id) == true) {
+          // add new property
+          gifsArray[i].hideAddFavouritesButton = true;
         }
       }
-      return true;
+      gifsArray = this.gifs;
     }
   }
 
@@ -117,6 +106,10 @@ export class HomeComponent implements OnInit {
 
   getSearchEventValue(event: any) {
     return event?.target ? event?.target?.value : event || '';
+  }
+
+  handleAddFavouritesClick(event: any) {
+    console.log('ADD: ' + event?.target ? event?.target?.value : event || '');
   }
 
   handleSearchChange(event: any) {

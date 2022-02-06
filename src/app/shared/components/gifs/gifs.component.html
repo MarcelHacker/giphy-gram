@@ -12,7 +12,10 @@
           </div>
         </div>
         <div *ngIf="!this.loading" @fadeIn>
-          <app-gif [gif]="gif"></app-gif>
+          <app-gif
+            [gif]="gif"
+            (addFavouritesClick)="handleAddFavouritesClick($event)"
+          ></app-gif>
         </div>
       </div>
     </div>
