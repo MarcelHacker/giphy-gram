@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GifsComponent } from './shared/components/gifs/gifs.component';
 import { GifsService } from './services/gifs.service';
-import { FavoritesComponent } from './favorites/favorites.component';
+import { FavouritesComponent } from '../app/modules/favourites/favourites.component';
 import { FormsModule } from '@angular/forms'; // for two-way databinding
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
@@ -20,7 +20,6 @@ import { LoaderComponent } from './shared/components/loader/loader.component';
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { HomeComponent } from './modules/home/home.component';
-import { FavouritesComponent } from './modules/favourites/favourites.component';
 import { GifComponent } from './shared/components/gif/gif.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -29,7 +28,6 @@ import { RouterModule } from '@angular/router';
   declarations: [
     AppComponent,
     GifsComponent,
-    FavoritesComponent,
     SearchComponent,
     LoaderComponent,
     HeaderComponent,

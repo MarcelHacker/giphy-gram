@@ -25,7 +25,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // TODO: Check on mount why Keine Ergebnisse shown
     this.loaded = false;
 
     this.searchGifs();
