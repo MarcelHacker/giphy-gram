@@ -39,10 +39,11 @@ export class GifsService {
 
   // Getters
   isGifFavourite(id: string) {
-    if (localStorage.getItem('savedGifs') == null) {
+    const string_json = localStorage.getItem('savedGifs');
+    if (string_json == null) {
       return false;
     } else {
-      const array = JSON.parse(localStorage.getItem('savedGifs'));
+      const array = JSON.parse(string_json);
       for (let i = 0; i < array.length; i++) {
         if (array[i].id == id) {
           return true;

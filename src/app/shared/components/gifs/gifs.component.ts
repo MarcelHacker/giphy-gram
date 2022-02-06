@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
@@ -17,7 +17,6 @@ import { trigger, style, animate, transition } from '@angular/animations';
 export class GifsComponent implements OnInit {
   @Input() gifs: Array<Object>;
   @Input() loading: Boolean;
-  @Output() handleAddFavouritesClick: Function;
 
   constructor() {
     this.loading = false;
@@ -25,4 +24,8 @@ export class GifsComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  handleAddFavouritesClick(event: any) {
+    console.log('ADD: ' + event?.target ? event?.target?.id : event || '');
+  }
 }

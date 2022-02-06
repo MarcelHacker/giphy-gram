@@ -35,6 +35,7 @@ export class GifComponent implements OnInit {
   }
 
   handleClick(id?: String) {
+    console.log(id);
     this.addFavouritesClick.emit(id);
   }
 }

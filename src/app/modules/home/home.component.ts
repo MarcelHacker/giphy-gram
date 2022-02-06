@@ -108,9 +108,7 @@ export class HomeComponent implements OnInit {
     return event?.target ? event?.target?.value : event || '';
   }
 
-  handleAddFavouritesClick(event: any) {
-    console.log('ADD: ' + event?.target ? event?.target?.value : event || '');
-  }
+  
 
   handleSearchChange(event: any) {
     const searchValue: string = this.getSearchEventValue(event);
