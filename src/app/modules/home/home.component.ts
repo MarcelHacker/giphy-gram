@@ -148,8 +148,6 @@ export class HomeComponent implements OnInit {
 
   handleSearchFocus(event: any) {
     const searchValue: String = this.getSearchEventValue(event);
-
-    // this.searchGifs();
   }
 
   handleSearchClear() {
