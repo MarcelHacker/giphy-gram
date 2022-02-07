@@ -26,10 +26,41 @@ export class FavouritesComponent implements OnInit {
 
     this.favouriteGifs = this.searchFavouriteGifs();
     this.removeDuplicateFavouriteGifs();
-    console.log(this.favouriteGifs);
     this.loading = false;
 
     //this.AutoUnsub();
+  }
+
+  removeDuplicateFavouriteGifs() {
+    const favouritesString = localStorage.getItem('savedGifs');
+    let array = JSON.parse(favouritesString as any);
+
+    if (array.length == 0) {
+      return;
+    } else {
+      let uniqueArray: any = [];
+
+      for (let i = 0; i < array.length; i++) {
+        if (uniqueArray.length == 0) {
+          uniqueArray.push(array[i]);
+        } else {
+          let statement = false;
+
+          for (let z = 0; z < uniqueArray.length; z++) {
+            if (array[i].id == uniqueArray[z].id) {
+              statement = true;
+            }
+          }
+          if (statement == false) {
+            uniqueArray.push(array[i]);
+          }
+        }
+      }
+      const json = JSON.stringify(uniqueArray);
+      localStorage.setItem('savedGifs', json);
+      console.log('unique: ' + uniqueArray);
+      this.favouriteGifs = uniqueArray;
+    }
   }
 
   searchFavouriteGifs(searchTerm?: string) {
@@ -78,36 +109,6 @@ export class FavouritesComponent implements OnInit {
     }
     console.log('Saved:' + json);
     localStorage.setItem('savedGifs', json);
-  }
-
-  removeDuplicateFavouriteGifs() {
-    const favouritesString = localStorage.getItem('savedGifs');
-    let array = JSON.parse(favouritesString as any);
-
-    if (array.length == 0) {
-      return;
-    } else {
-      let uniqueArray: any = [];
-
-      for (let i = 0; i < array.length; i++) {
-        if (uniqueArray.length == 0) {
-          uniqueArray.push(array[i]);
-        } else {
-          let statement = false;
-
-          for (let z = 0; z < uniqueArray.length; z++) {
-            if (array[i].id == uniqueArray[z].id) {
-              statement = true;
-            }
-          }
-          if (statement == false) {
-            uniqueArray.push(array[i]);
-          }
-        }
-      }
-      console.log('unique: ' + uniqueArray);
-      this.favouriteGifs = uniqueArray;
-    }
   }
 
   getSearchEventValue(event: any) {
