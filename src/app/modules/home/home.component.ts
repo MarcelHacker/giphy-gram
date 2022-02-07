@@ -69,8 +69,6 @@ export class HomeComponent implements OnInit {
       newFavouritesArray.push(object);
       json = JSON.stringify(newFavouritesArray);
     } else {
-      const payload = JSON.stringify(object);
-      json = '[' + payload + ']';
       return;
     }
     console.log('Saved:' + json);
