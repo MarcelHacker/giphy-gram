@@ -11,6 +11,8 @@ export class GifComponent implements OnInit {
   @Input() hidden: Boolean;
   @Input() gif: Gif = {
     embed_url: '',
+    hideAddFavouritesButton: true,
+    hideRemoveFavouritesButton: true,
     images: {
       original: {
         width: '100%',

@@ -38,7 +38,7 @@ export class GifsService {
   }
 
   // Getters
-  isGifFavourite(id: string) {
+  isGifFavourite(id?: string) {
     const string_json = localStorage.getItem('savedGifs');
     if (string_json == null) {
       return false;

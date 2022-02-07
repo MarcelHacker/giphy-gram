@@ -16,7 +16,7 @@
           type="button"
           class="btn btn-light"
           (click)="handleAddClick(this.gif.id)"
-          [hidden]="!this.gif.hideAddFavouritesButton"
+          [hidden]="this.gif.hideAddFavouritesButton"
         >
           <i class="fas fa-heart favourites-icon"></i>
         </button>
@@ -26,7 +26,7 @@
           type="button"
           class="btn btn-outline-danger"
           (click)="handleRemoveClick(this.gif.id)"
-          [hidden]="this.gif.hideAddFavouritesButton"
+          [hidden]="this.gif.hideRemoveFavouritesButton"
         >
           <i class="fas fa-trash-alt"></i>
         </button>

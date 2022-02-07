@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchGifs();
+    this.setFavouriteButtonProperty();
 
     //this.AutoUnsub();
   }
@@ -61,13 +62,15 @@ export class HomeComponent implements OnInit {
     let array = JSON.parse(favouritesArray as any);
     let json: string = '';
     let newFavouritesArray = [];
+    let object = array.find((element: any) => element.id != id);
 
     if (array != null) {
-      let object = array.find((element: any) => element.id != id);
       console.log('object: ' + object);
       newFavouritesArray.push(object);
       json = JSON.stringify(newFavouritesArray);
     } else {
+      const payload = JSON.stringify(object);
+      json = '[' + payload + ']';
       return;
     }
     console.log('Saved:' + json);
@@ -95,15 +98,20 @@ export class HomeComponent implements OnInit {
   }
 
   setFavouriteButtonProperty() {
-    if (!this.gifs.length) {
+    let gifsArray = this.gifs as any;
+    if (gifsArray.length == 0) {
       return;
     } else {
-      let gifsArray: any = this.gifs;
       for (let i = 0; i < gifsArray.length; i++) {
-        if (this.service.isGifFavourite(gifsArray[i].id) == true) {
+        const statement = this.service.isGifFavourite(gifsArray[i].id);
+        if (statement == true) {
           // add new property
           gifsArray[i].hideAddFavouritesButton = true;
-          console.log('button false' + i);
+          gifsArray[i].hideRemoveFavouritesButton = false;
+          console.log('button false: ' + i);
+        } else {
+          gifsArray[i].hideAddFavouritesButton = false;
+          gifsArray[i].hideRemoveFavouritesButton = true;
         }
       }
       gifsArray = this.gifs;

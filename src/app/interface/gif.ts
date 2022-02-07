@@ -21,4 +21,5 @@ export interface Gif {
   images?: Images;
   title?: String;
   hideAddFavouritesButton?: Boolean;
+  hideRemoveFavouritesButton?: Boolean;
 }

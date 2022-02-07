@@ -25,7 +25,7 @@ export class FavouritesComponent implements OnInit {
     this.loading = true;
 
     this.favouriteGifs = this.searchFavouriteGifs();
-    this.removeDuplicateFavouriteGifs();
+    //    this.removeDuplicateFavouriteGifs();
     this.loading = false;
 
     //this.AutoUnsub();
@@ -57,7 +57,9 @@ export class FavouritesComponent implements OnInit {
         }
       }
       const json = JSON.stringify(uniqueArray);
-      localStorage.setItem('savedGifs', json);
+      if (json != null) {
+        localStorage.setItem('savedGifs', json);
+      }
       console.log('unique: ' + uniqueArray);
       this.favouriteGifs = uniqueArray;
     }
@@ -100,9 +102,11 @@ export class FavouritesComponent implements OnInit {
     let newFavouritesArray = [];
 
     if (array != null) {
-      let object = array.find((element: any) => element.id != id);
-      console.log('object: ' + object);
-      newFavouritesArray.push(object);
+      for (let i = 0; i < array.length; i++) {
+        if (array[i].id != id) {
+          newFavouritesArray.push(array[i]);
+        }
+      }
       json = JSON.stringify(newFavouritesArray);
     } else {
       return;
