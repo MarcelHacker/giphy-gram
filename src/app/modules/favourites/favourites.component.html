@@ -16,9 +16,9 @@
   [gifs]="this.favouriteGifs"
   (removeFavouritesClickButton)="removeGifFromFavourites($event)"
 ></app-gifs>
-<div>
-  <span *ngIf="!this.favouriteGifs.length" class="text-center"
-    >Keine Ergebnisse gefunden</span
+<div class="text-center">
+  <span *ngIf="!this.favouriteGifs.length && !this.loading" class="text-center"
+    ><strong>Keine Ergebnisse gefunden</strong></span
   >
 </div>
 <app-footer></app-footer>
