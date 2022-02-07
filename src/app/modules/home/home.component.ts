@@ -106,7 +106,6 @@ export class HomeComponent implements OnInit {
           // add new property
           gifsArray[i].hideAddFavouritesButton = true;
           gifsArray[i].hideRemoveFavouritesButton = true;
-          console.log('button false: ' + i);
         } else {
           gifsArray[i].hideAddFavouritesButton = false;
           gifsArray[i].hideRemoveFavouritesButton = true;
