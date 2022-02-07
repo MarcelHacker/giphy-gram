@@ -19,6 +19,7 @@ export class GifComponent implements OnInit {
     },
   };
   @Output() addFavouritesClick: EventEmitter<any> = new EventEmitter<any>();
+  @Output() removeFavouritesClick: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private sainitzer: DomSanitizer) {
     this.hidden = false;
@@ -34,7 +35,10 @@ export class GifComponent implements OnInit {
     return this.sainitzer.bypassSecurityTrustResourceUrl(url);
   }
 
-  handleClick(id?: String) {
+  handleAddClick(id?: String) {
     this.addFavouritesClick.emit(id);
+  }
+  handleRemoveClick(id?: String) {
+    this.removeFavouritesClick.emit(id);
   }
 }

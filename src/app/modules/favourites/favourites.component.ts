@@ -25,6 +25,7 @@ export class FavouritesComponent implements OnInit {
     this.loading = true;
 
     this.favouriteGifs = this.searchFavouriteGifs();
+    this.removeDuplicateFavouriteGifs();
     console.log(this.favouriteGifs);
     this.loading = false;
 
@@ -54,6 +55,58 @@ export class FavouritesComponent implements OnInit {
         this.favouriteGifs = bufferArray;
         return bufferArray;
       }
+    }
+  }
+
+  removeGifFromFavourites(event: any) {
+    console.log('REMOVE: ', event);
+    const id = event;
+    console.log('ID des Gifs: ' + id);
+
+    const favouritesArray = localStorage.getItem('savedGifs');
+    let array = JSON.parse(favouritesArray as any);
+    let json: string = '';
+    let newFavouritesArray = [];
+
+    if (array != null) {
+      let object = array.find((element: any) => element.id != id);
+      console.log('object: ' + object);
+      newFavouritesArray.push(object);
+      json = JSON.stringify(newFavouritesArray);
+    } else {
+      return;
+    }
+    console.log('Saved:' + json);
+    localStorage.setItem('savedGifs', json);
+  }
+
+  removeDuplicateFavouriteGifs() {
+    const favouritesString = localStorage.getItem('savedGifs');
+    let array = JSON.parse(favouritesString as any);
+
+    if (array.length == 0) {
+      return;
+    } else {
+      let uniqueArray: any = [];
+
+      for (let i = 0; i < array.length; i++) {
+        if (uniqueArray.length == 0) {
+          uniqueArray.push(array[i]);
+        } else {
+          let statement = false;
+
+          for (let z = 0; z < uniqueArray.length; z++) {
+            if (array[i].id == uniqueArray[z].id) {
+              statement = true;
+            }
+          }
+          if (statement == false) {
+            uniqueArray.push(array[i]);
+          }
+        }
+      }
+      console.log('unique: ' + uniqueArray);
+      this.favouriteGifs = uniqueArray;
     }
   }
 

@@ -14,12 +14,23 @@
       <div class="mx-auto d-grid gap-2 col-2">
         <button
           type="button"
-          class="btn btn-success"
-          (click)="handleClick(this.gif.id)"
-          [hidden]="this.gif.hideAddFavouritesButton"
+          class="btn btn-light"
+          (click)="handleAddClick(this.gif.id)"
+          [hidden]="!this.gif.hideAddFavouritesButton"
         >
           <i class="fas fa-heart favourites-icon"></i>
-        </button></div
-    ></small>
+        </button>
+      </div>
+      <div class="mx-auto d-grid gap-2 col-2">
+        <button
+          type="button"
+          class="btn btn-outline-danger"
+          (click)="handleRemoveClick(this.gif.id)"
+          [hidden]="this.gif.hideAddFavouritesButton == true"
+        >
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </div>
+    </small>
   </div>
 </div>

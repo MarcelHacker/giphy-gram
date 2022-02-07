@@ -11,7 +11,11 @@
     [loading]="this.loading"
   ></app-search>
 </div>
-<app-gifs *ngIf="this.favouriteGifs" [gifs]="this.favouriteGifs"></app-gifs>
+<app-gifs
+  *ngIf="this.favouriteGifs"
+  [gifs]="this.favouriteGifs"
+  (removeFavouritesClickButton)="removeGifFromFavourites($event)"
+></app-gifs>
 <div>
   <span *ngIf="!this.favouriteGifs.length" class="text-center"
     >Keine Ergebnisse gefunden</span

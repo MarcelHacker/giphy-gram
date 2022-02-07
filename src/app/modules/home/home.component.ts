@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
 
     //this.AutoUnsub();
   }
+
   addGifToFavourites(event: any) {
     console.log('ADD: ', event);
     const id = event;
@@ -46,6 +47,28 @@ export class HomeComponent implements OnInit {
     } else {
       let payload = JSON.stringify(object);
       json = '[' + payload + ']';
+    }
+    console.log('Saved:' + json);
+    localStorage.setItem('savedGifs', json);
+  }
+
+  removeGifFromFavourites(event: any) {
+    console.log('REMOVE: ', event);
+    const id = event;
+    console.log('ID des Gifs: ' + id);
+
+    const favouritesArray = localStorage.getItem('savedGifs');
+    let array = JSON.parse(favouritesArray as any);
+    let json: string = '';
+    let newFavouritesArray = [];
+
+    if (array != null) {
+      let object = array.find((element: any) => element.id != id);
+      console.log('object: ' + object);
+      newFavouritesArray.push(object);
+      json = JSON.stringify(newFavouritesArray);
+    } else {
+      return;
     }
     console.log('Saved:' + json);
     localStorage.setItem('savedGifs', json);

@@ -19,6 +19,8 @@ export class GifsComponent implements OnInit {
   @Input() loading: Boolean;
   @Output() addFavouritesClickButton: EventEmitter<any> =
     new EventEmitter<any>();
+  @Output() removeFavouritesClickButton: EventEmitter<any> =
+    new EventEmitter<any>();
   constructor() {
     this.loading = false;
     this.gifs = [];
@@ -28,5 +30,8 @@ export class GifsComponent implements OnInit {
 
   handleAddFavouritesClick(id: any) {
     this.addFavouritesClickButton.emit(id);
+  }
+  handleRemoveFavouritesClick(id: any) {
+    this.removeFavouritesClickButton.emit(id);
   }
 }
