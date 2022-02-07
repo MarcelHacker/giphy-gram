@@ -39,15 +39,20 @@ export class FavouritesComponent implements OnInit {
     } else {
       const array = JSON.parse(string_json);
 
-      if (searchTerm == '') {
+      if (searchTerm == undefined) {
         console.log('ar' + array);
         return array;
       } else {
-        // TODO make event in child
         console.log('Suche: ' + searchTerm);
-        let filteredGifs = array.find((title: string) => title == searchTerm);
-        console.log();
-        return filteredGifs;
+        let bufferArray = [];
+        for (let i = 0; i < array.length; i++) {
+          if (array[i].title.includes(searchTerm.toLocaleLowerCase())) {
+            bufferArray.push(array[i]);
+          }
+        }
+        console.log('filtered: ' + bufferArray);
+        this.favouriteGifs = bufferArray;
+        return bufferArray;
       }
     }
   }
@@ -58,21 +63,21 @@ export class FavouritesComponent implements OnInit {
 
   handleSearchChange(event: any) {
     const searchValue: string = this.getSearchEventValue(event);
-
     this.searchChangedSubject.next(searchValue);
   }
 
   handleSearchBlur(event: any) {
     const searchValue: String = this.getSearchEventValue(event);
-
-    // this.searchGifs();
+    this.searchFavouriteGifs(undefined);
   }
 
   handleSearchFocus(event: any) {
     const searchValue: String = this.getSearchEventValue(event);
-
-    // this.searchGifs();
+    this.searchFavouriteGifs();
   }
 
-  handleSearchClear() {}
+  handleSearchClear() {
+    console.log('clear');
+    this.searchFavouriteGifs(undefined);
+  }
 }

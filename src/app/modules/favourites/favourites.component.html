@@ -2,11 +2,18 @@
 <div
   class="align-items-center mr-auto ml-auto d-flex justify-content-center mt-4 mb-4"
 >
-  <app-search class="w-50" [loading]="this.loading"></app-search>
+  <app-search
+    class="w-50"
+    (change)="handleSearchChange($event)"
+    (blur)="handleSearchBlur($event)"
+    (clear)="handleSearchClear()"
+    (focus)="handleSearchFocus($event)"
+    [loading]="this.loading"
+  ></app-search>
 </div>
 <app-gifs *ngIf="this.favouriteGifs" [gifs]="this.favouriteGifs"></app-gifs>
 <div>
-  <span *ngIf="!this.favouriteGifs" class="text-center"
+  <span *ngIf="!this.favouriteGifs.length" class="text-center"
     >Keine Ergebnisse gefunden</span
   >
 </div>
